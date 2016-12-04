@@ -1,0 +1,85 @@
+html {
+  background-color: #FFF9F4;
+}
+
+body {
+  width: 800px;
+  margin: 0px auto;
+  font-family: 'tahoma', serif;
+}
+
+h1 {
+  font-family: verdana, sans-serif;
+}
+
+#header {
+  background-color: #C2AD9D;
+  background-image: url("http://www.freeiconspng.com/uploads/italian-food-16.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  text-shadow: 2px 2px 8px #000000;
+  color: #ffffff;
+  padding: 20px;
+}
+
+#header a{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+
+#menu {
+  background-color: #7E472D;
+}
+
+#menu a{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.signup {background-color: #7E472D;
+padding: 0.8%;
+text-align: center;
+width: 55px;
+height: 5px;
+border-radius:5px;
+}
+
+#menu ul {
+  list-style-type: none;
+  padding: 0;
+  padding: 10px 0px;
+  margin: 0px;
+}
+
+#menu li {
+  display: inline;
+  border: none;
+}
+
+#menu li a {
+  padding: 10px;
+}
+
+#menu li a:hover {
+  background: #C2AD9D;
+}
+
+form {
+	display: inline;
+	float: right;
+	padding: 0px 10px;
+}
+
+#content {
+  padding: 0 10px;
+  background-color: #ffffff;
+  width: 60%;
+}
+
+#content a {
+  text-decoration: none;
+  color: #fff;
+}
+
+
