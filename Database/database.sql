@@ -23,19 +23,16 @@ CREATE TABLE User (
   residenceArea NUMBER REFERENCES ResidenceArea(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
--- TODO change .png, .doc e .pdf to match deletion of meanScore
 /* Owner(id -> User) */
 CREATE TABLE Owner (
   id NUMBER NOT NULL PRIMARY KEY REFERENCES User(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- TODO change .png, .doc e .pdf to match deletion of meanScore
 /* Reviewer(id -> User) */
 CREATE TABLE Reviewer (
   id NUMBER NOT NULL PRIMARY KEY REFERENCES User(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- TODO change .png, .doc e .pdf to match id -> User(id)
 /* Login(id -> User, username, password) */
 CREATE TABLE Login (
   id NUMBER NOT NULL PRIMARY KEY REFERENCES User(id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -49,7 +46,6 @@ CREATE TABLE ResidenceArea (
   name NVARCHAR2(20) NOT NULL
 );
 
--- TODO change .png, .doc e .pdf to match deletion of score
 /* Restaurant(id, name, description, address, priceRange -> PriceRange) */
 CREATE TABLE Restaurant (
   id NUMBER PRIMARY KEY NOT NULL,
@@ -70,7 +66,6 @@ CREATE TABLE Review (
   restaurant NUMBER NOT NULL REFERENCES Restaurant(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- TODO change .png, .doc e .pdf to match deletion of duration
 /* Event(id, title, description, dateStart, dateFinish, restaurant -> Restaurant, priceRange -> PriceRange) */
 CREATE TABLE Event (
   id NUMBER PRIMARY KEY NOT NULL,
