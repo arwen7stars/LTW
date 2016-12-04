@@ -1,7 +1,57 @@
-.read database.sql
+.read inserts.sql
 
-.print "-> Select all users\n"
+.print "-> Select all Images\n"
+SELECT * FROM Image;
+
+.print "\n"
+
+.print "-> Select all Users\n"
 SELECT * FROM User;
+
+.print "\n"
+
+.print "-> Select all Owners\n"
+SELECT * FROM Owner;
+
+.print "\n"
+
+.print "-> Select all Reviewers\n"
+SELECT * FROM Reviewer;
+
+.print "\n"
+
+.print "-> Select all Logins\n"
+SELECT * FROM Login;
+
+.print "\n"
+
+.print "-> Select all Residence Areas\n"
+SELECT * FROM ResidenceArea;
+
+.print "\n"
+
+.print "-> Select all Restaurants\n"
+SELECT * FROM Restaurant;
+
+.print "\n"
+
+.print "-> Select all Reviews\n"
+SELECT * FROM Review;
+
+.print "\n"
+
+.print "-> Select all Events\n"
+SELECT * FROM Event;
+
+.print "\n"
+
+.print "-> Select all Price Ranges\n"
+SELECT * FROM PriceRange;
+
+.print "\n"
+
+.print "-> Select all Restaurant Owners\n"
+SELECT * FROM RestaurantOwners;
 
 .print "\n"
 
