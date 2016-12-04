@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  width: 800px;
+  width: 900px;
   margin: 0px auto;
   font-family: 'tahoma', serif;
 }
@@ -17,13 +17,33 @@ h1 {
   background-image: url("http://www.freeiconspng.com/uploads/italian-food-16.png");
   background-repeat: no-repeat;
   background-position: right;
-  text-shadow: 2px 2px 8px #000000;
+  text-shadow: 1px 1px 1px #000000;
   color: #ffffff;
   padding: 20px;
 }
 
+.signup {
+  background-color: #7E472D;
+  color: #fff;
+  padding: 0.8%;
+  text-align: center;
+  border-radius:5px;
+  border-style: solid;
+  border-color: #7E472D;
+  border-width: 2px;
+}
+
+.login {
+  color: #fff;
+  padding: 0.8%;
+  text-align: center;
+  border-radius:5px;
+  border-style: solid;
+  border-color: #7E472D;
+  border-width: 2px;
+}
+
 #header a{
-  color: #ffffff;
   text-decoration: none;
 }
 
@@ -39,14 +59,6 @@ h1 {
 #menu a{
   color: #ffffff;
   text-decoration: none;
-}
-
-.signup {background-color: #7E472D;
-padding: 0.8%;
-text-align: center;
-width: 55px;
-height: 5px;
-border-radius:5px;
 }
 
 #menu ul {
@@ -76,19 +88,29 @@ form {
 }
 
 #content .restaurants {
-  padding: 5px 10px;
-  width: 60%;
+  padding: 10px 10px;
+  width: 55%;
+  height: 300px;
+  overflow-y: auto;
   float: left;
   background-color: #ffffff;
   margin-bottom:10px;
+  border-style: solid;
+  border-color: #7E472D;
+  border-width: 2px;
 }
 
 #content .reviews {
   padding: 10px 10px;
-  width: 30%;
+  width: 35%;
+  height: 300px;
+  overflow-y: auto;
   float: right;
   background-color: #ffffff;
   margin-bottom:10px;
+  border-style: solid;
+  border-color: #7E472D;
+  border-width: 2px;
 }
 
 #content .footer {
