@@ -27,6 +27,10 @@ h1 {
   text-decoration: none;
 }
 
+#header .sign {
+  text-align: right;
+}
+
 
 #menu {
   background-color: #7E472D;
@@ -71,15 +75,29 @@ form {
 	padding: 0px 10px;
 }
 
-#content {
-  padding: 0 10px;
-  background-color: #ffffff;
+#content .restaurants {
+  padding: 5px 10px;
   width: 60%;
+  float: left;
+  background-color: #ffffff;
+  margin-bottom:10px;
+}
+
+#content .reviews {
+  padding: 10px 10px;
+  width: 30%;
+  float: right;
+  background-color: #ffffff;
+  margin-bottom:10px;
+}
+
+#content .footer {
+  margin-top: 10px;
+  border-top: 1px solid black;
+  clear: both;
 }
 
 #content a {
   text-decoration: none;
   color: #fff;
 }
-
-
