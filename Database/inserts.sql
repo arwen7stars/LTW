@@ -44,7 +44,7 @@ INSERT INTO Restaurant values(33, 'Restaurante Astória', NULL, 'Rua da Betesga, 
 INSERT INTO Restaurant values(34, 'Portucale', NULL, 'Av Ressano Garcia', 9);
 INSERT INTO Restaurant values(35, 'Tentações no Prato', NULL, 'Rua da Oliveira ao Carmo, No414', 8);
 INSERT INTO Restaurant values(36, 'Santa Francesinha', NULL, 'Rua dos Olhos, No818', 10);
-INSERT INTO Restaurant values(37, 'Cafe Piolho D'Ouro', NULL, 'Rua das Asas, No163', 9);
+INSERT INTO Restaurant values(37, 'Cafe Piolho Douro', NULL, 'Rua das Asas, No163', 9);
 INSERT INTO Restaurant values(38, 'Português de Gema', NULL, 'Rua dos Mares, No146', 9);
 INSERT INTO Restaurant values(39, 'Restaurante Braganca', NULL, 'Rua Bela Vista, No361', 10);
 INSERT INTO Restaurant values(40, 'O Forno do Leitão do Zé', NULL, 'Rua Boa Cidade, No3', 10);
@@ -53,7 +53,7 @@ INSERT INTO Restaurant values(42, 'Porto Antigo', NULL, 'Rua dos Ceus, No441', 7
 INSERT INTO Restaurant values(43, 'O Bom Talher', NULL, 'Av das Cegonhas', 8);
 INSERT INTO Restaurant values(44, 'Churrasqueira São Francisco', NULL, 'Rot da Trofa', 8);
 INSERT INTO Restaurant values(45, 'Pedro dos Frangos', NULL, 'Calcada de Cristal, No773', 9);
-INSERT INTO Restaurant values(46, 'Tasquinha D'ouro', NULL, 'Trav do Porto, No111', 9);
+INSERT INTO Restaurant values(46, 'Tasquinha Douro', NULL, 'Trav do Porto, No111', 9);
 INSERT INTO Restaurant values(47, 'Restaurante Silva Bar', NULL, 'Rua Julio Cesar, No535', 7);
 INSERT INTO Restaurant values(48, 'Restaurante Kool', NULL, 'Rua do Sol a Santana, No81', 8);
 INSERT INTO Restaurant values(49, 'Sushi Place Foz', NULL, 'Rua de Sao Mamede, No69', 10);
