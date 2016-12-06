@@ -60,16 +60,26 @@ INSERT INTO Restaurant values(59, 'Sushi Place Foz', 'Suspendisse lobortis hendr
 INSERT INTO Restaurant values(60, 'Restaurante Medit', 'Vestibulum ac diam sit amet diam tempus ultrices. Fusce sit amet velit nec nisl condimentum pulvinar. Duis vitae mi tincidunt, placerat massa eget, euismod ante. Etiam sit amet tincidunt ligula, ut hendrerit mauris. Aenean efficitur aliquet aliquam.', 'Rua dos Fanqueiros, No99', 9);
 
 INSERT INTO Event values(61, 'Free Food Fridays!', 'Come eat for free every friday night!', '2016-12-02 00:00', '2016-12-02 23:59', 15, 7);
-INSERT INTO Event values(62, 'McFood!!', 'Eat a cheap and good meal for Christmas~~!', '2016-12-25 00:00', '2016-12-25 23:59', 11, 8);
-INSERT INTO Event values(63, 'Merry Pizza!', 'Eat the best pizza this Christmas!', '2016-12-25 00:00', '2016-12-25 23:59', 11, 8);
-INSERT INTO Event values(64, 'Merry Food~', 'What is Christmas without exquisite food?', '2016-12-25 00:00', '2016-12-25 23:59', 23, 10);
-INSERT INTO Event values(65, 'Cozy Meal for New Year', 'Celebrate the new year with cheap food', '2016-12-31 20:00', '2017-01-01 06:00', 11, 7);
-INSERT INTO Event values(66, 'New Years Banquet', 'Come eat a tasty & exquisite meal to celebrate the new year!', '2016-12-31 20:00', '2017-01-01 06:00', 14, 10);
-INSERT INTO Event values(67, 'Satuday Exclusive Sale!', 'Come eat the best food ever for a good price!', '2017-01-06 00:00', '2017-01-06 23:59', 22, 8);
-INSERT INTO Event values(68, 'Bread4Life', 'Eat lots of bread today', '2017-01-30 00:00', '2017-01-30 23:59:59', 27, 8);
-INSERT INTO Event values(69, 'Carnival', 'Celebrate carnival with us!', '2017-02-09 00:00', '2017-02-09 23:59:59', 53, 8);
-INSERT INTO Event values(70, 'Valentines Day!', 'Celebrate this special day here!', '2017-02-14 00:00', '2017-02-14 23:59:59', 15, 8);
-INSERT INTO Event values(71, 'Be cool', 'Eat and be cool today at Restaurante Kool!', '2017-03-02 00:00', '2017-03-02 23:59:59', 58, 10);
+INSERT INTO Event values(62, 'Rest from college at this restaurant!', 'Tired because of all the college work?! Come eat past to alleviate your stress!', '2016-12-12 00:00', '2016-12-12 23:59', 15, 19);
+INSERT INTO Event values(63, 'Fine food & wine for a good price this week', 'Visit Papavinhos this week!', '2016-12-11 00:00', '2016-12-18 23:59', 41, 9);
+INSERT INTO Event values(64, 'McFood!!', 'Eat a cheap and good meal for Christmas~~!', '2016-12-25 00:00', '2016-12-25 23:59', 11, 8);
+INSERT INTO Event values(65, 'Merry Pizza!', 'Eat the best pizza this Christmas!', '2016-12-25 00:00', '2016-12-25 23:59', 11, 8);
+INSERT INTO Event values(66, 'Merry Food~', 'What is Christmas without exquisite food?', '2016-12-25 00:00', '2016-12-25 23:59', 23, 10);
+INSERT INTO Event values(67, 'Cozy Meal for New Year', 'Celebrate the new year with cheap food', '2016-12-31 20:00', '2017-01-01 06:00', 11, 7);
+INSERT INTO Event values(68, 'New Years Banquet', 'Come eat a tasty & exquisite meal to celebrate the new year!', '2016-12-31 20:00', '2017-01-01 06:00', 14, 10);
+INSERT INTO Event values(69, 'Satuday Exclusive Sale!', 'Come eat the best food ever for a good price!', '2017-01-06 00:00', '2017-01-06 23:59', 22, 8);
+INSERT INTO Event values(70, 'Bread4Life', 'Eat lots of bread today', '2017-01-30 00:00', '2017-01-30 23:59:59', 27, 8);
+INSERT INTO Event values(71, 'Birthday of Rin Tohsaka~', 'The best birthday celebration for the best mage!', '2016-02-03 20:00', '2016-02-03 23:59', 52, 10);
+INSERT INTO Event values(72, 'Carnival', 'Celebrate carnival with us!', '2017-02-09 00:00', '2017-02-09 23:59', 53, 8);
+INSERT INTO Event values(73, 'Valentines Day!', 'Celebrate this special day here!', '2017-02-14 00:00', '2017-02-14 23:59', 15, 8);
+INSERT INTO Event values(74, 'Be cool', 'Eat and be cool today at Restaurante Kool!', '2017-03-02 00:00', '2017-03-02 23:59', 58, 10);
+INSERT INTO Event values(75, 'White Day', 'Give the chocolates back or whatever', '2017-03-14 00:00', '2017-03-14 23:59', 25, 9);
+INSERT INTO Event values(76, 'Our food is expensive', 'Ah!! We lied 8D', '2017-04-01 00:00', '2017-04-01 23:59', 28, 8);
+INSERT INTO Event values(77, 'Star Wars Day', 'May the force be with you', '2017-05-04 00:00', '2017-05-04 23:59', 30, 8);
+INSERT INTO Event values(78, 'Portucales 10th Birthday', 'We have been around for 10 year! Celebrate this special day with us', '2017-05-13 10:00', '2017-05-13 22:00', 44, 9);
+INSERT INTO Event values(79, 'Paparicos 1st birthday', 'Celebrate our birthday with us', '2017-05-20 00:00', '2017-05-20 23:59', 38, 8);
+INSERT INTO Event values(80, 'Star Wars Day', 'May the force be with you', '2017-05-04 00:00', '2017-05-04 23:59', 30, 8);
+INSERT INTO Event values(81, 'Happy Birthday to Claudia', 'Celebrate her birthday today!', '2016-05-26 18:00', '2016-05-26 22:00', 11, 8);
 
 INSERT INTO Image values(1, 'http://imgur.com/a/YOsIQ', 'A picture of Senjougahara Hitagi', NULL);
 INSERT INTO Image values(2, 'http://imgur.com/a/mjyDp', NULL, 5);
