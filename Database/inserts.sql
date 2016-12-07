@@ -60,7 +60,7 @@ INSERT INTO Restaurant values(59, 'Sushi Place Foz', 'Suspendisse lobortis hendr
 INSERT INTO Restaurant values(60, 'Restaurante Medit', 'Vestibulum ac diam sit amet diam tempus ultrices. Fusce sit amet velit nec nisl condimentum pulvinar. Duis vitae mi tincidunt, placerat massa eget, euismod ante. Etiam sit amet tincidunt ligula, ut hendrerit mauris. Aenean efficitur aliquet aliquam.', 'Rua dos Fanqueiros, No99', 9);
 
 INSERT INTO Event values(61, 'Free Food Fridays!', 'Come eat for free every friday night!', '2016-12-02 00:00', '2016-12-02 23:59', 15, 7);
-INSERT INTO Event values(62, 'Rest from college at this restaurant!', 'Tired because of all the college work?! Come eat past to alleviate your stress!', '2016-12-12 00:00', '2016-12-12 23:59', 15, 19);
+INSERT INTO Event values(62, 'Rest from college at this restaurant!', 'Tired because of all the college work?! Come eat past to alleviate your stress!', '2016-12-12 00:00', '2016-12-12 23:59', 15, 9);
 INSERT INTO Event values(63, 'Fine food & wine for a good price this week', 'Visit Papavinhos this week!', '2016-12-11 00:00', '2016-12-18 23:59', 41, 9);
 INSERT INTO Event values(64, 'McFood!!', 'Eat a cheap and good meal for Christmas~~!', '2016-12-25 00:00', '2016-12-25 23:59', 11, 8);
 INSERT INTO Event values(65, 'Merry Pizza!', 'Eat the best pizza this Christmas!', '2016-12-25 00:00', '2016-12-25 23:59', 11, 8);
@@ -336,6 +336,61 @@ INSERT INTO Login values(219, 'adeus', 'idontwant');
 
 INSERT INTO Review values(6, 10, 'My First Review', 'McDonalds is the best restaurant out there!', 'I went to McDonalds yesterday and it was amazing. 11/10 would go again!!', 4, 5);
 
-INSERT INTO RestaurantOwners values(5, 3);
-INSERT INTO RestaurantOwners values(5, 4);
-INSERT INTO RestaurantOwners values(12, 3);
+/* Owners: 169(3) 170(3) 172(3) 175(3) 176 178 180 182 183(3) 184(4) 186 188 192 195 197 198 200(3) 201 { 203 204 205 206 207 } 211 215 219 */
+/* Restaurants: 11 - 60 */
+/* entre { e } estao os owners com so 1 restaurante */
+
+INSERT INTO RestaurantOwners values(11, 169);
+INSERT INTO RestaurantOwners values(11, 175);
+INSERT INTO RestaurantOwners values(12, 188);
+INSERT INTO RestaurantOwners values(13, 215);
+INSERT INTO RestaurantOwners values(14, 169);
+INSERT INTO RestaurantOwners values(15, 170);
+INSERT INTO RestaurantOwners values(15, 184);
+INSERT INTO RestaurantOwners values(16, 178);
+INSERT INTO RestaurantOwners values(17, 192);
+INSERT INTO RestaurantOwners values(18, 205);
+INSERT INTO RestaurantOwners values(19, 180);
+INSERT INTO RestaurantOwners values(19, 201);
+INSERT INTO RestaurantOwners values(20, 172);
+INSERT INTO RestaurantOwners values(21, 195);
+INSERT INTO RestaurantOwners values(22, 219);
+INSERT INTO RestaurantOwners values(23, 182);
+INSERT INTO RestaurantOwners values(24, 170);
+INSERT INTO RestaurantOwners values(25, 197);
+INSERT INTO RestaurantOwners values(26, 206);
+INSERT INTO RestaurantOwners values(27, 175);
+INSERT INTO RestaurantOwners values(28, 170);
+INSERT INTO RestaurantOwners values(29, 192);
+INSERT INTO RestaurantOwners values(30, 183);
+INSERT INTO RestaurantOwners values(31, 176);
+INSERT INTO RestaurantOwners values(32, 198);
+INSERT INTO RestaurantOwners values(33, 172);
+INSERT INTO RestaurantOwners values(34, 178);
+INSERT INTO RestaurantOwners values(35, 207);
+INSERT INTO RestaurantOwners values(36, 184);
+INSERT INTO RestaurantOwners values(37, 180);
+INSERT INTO RestaurantOwners values(38, 186);
+INSERT INTO RestaurantOwners values(39, 200);
+INSERT INTO RestaurantOwners values(40, 184);
+INSERT INTO RestaurantOwners values(41, 188);
+INSERT INTO RestaurantOwners values(42, 201);
+INSERT INTO RestaurantOwners values(43, 195);
+INSERT INTO RestaurantOwners values(44, 183);
+INSERT INTO RestaurantOwners values(45, 197);
+INSERT INTO RestaurantOwners values(45, 200);
+INSERT INTO RestaurantOwners values(46, 169);
+INSERT INTO RestaurantOwners values(47, 184);
+INSERT INTO RestaurantOwners values(48, 198);
+INSERT INTO RestaurantOwners values(49, 200);
+INSERT INTO RestaurantOwners values(50, 203);
+INSERT INTO RestaurantOwners values(51, 172);
+INSERT INTO RestaurantOwners values(52, 204);
+INSERT INTO RestaurantOwners values(53, 175);
+INSERT INTO RestaurantOwners values(54, 186);
+INSERT INTO RestaurantOwners values(55, 176);
+INSERT INTO RestaurantOwners values(56, 219);
+INSERT INTO RestaurantOwners values(57, 211);
+INSERT INTO RestaurantOwners values(58, 215);
+INSERT INTO RestaurantOwners values(59, 183);
+INSERT INTO RestaurantOwners values(60, 211);
