@@ -14,7 +14,7 @@ h1 {
 
 #header {
   background-color: #C2AD9D;
-  background-image: url("http://www.freeiconspng.com/uploads/italian-food-16.png");
+  background-image: url("./resources/background.png");
   background-repeat: no-repeat;
   background-position: right;
   text-shadow: 1px 1px 1px #000000;
@@ -25,9 +25,8 @@ h1 {
 .signup {
   background-color: #7E472D;
   color: #fff;
-  padding: 0.8%;
+  padding: 5px;
   text-align: center;
-  border-radius:5px;
   border-style: solid;
   border-color: #7E472D;
   border-width: 2px;
@@ -35,9 +34,8 @@ h1 {
 
 .login {
   color: #fff;
-  padding: 0.8%;
+  padding: 5px;
   text-align: center;
-  border-radius:5px;
   border-style: solid;
   border-color: #7E472D;
   border-width: 2px;
@@ -78,7 +76,7 @@ h1 {
 }
 
 #menu li a:hover {
-  background: #C2AD9D;
+  background: #a79180;
 }
 
 form {
@@ -113,13 +111,12 @@ form {
   border-width: 2px;
 }
 
-#content .footer {
+#footer {
   margin-top: 10px;
   border-top: 1px solid black;
   clear: both;
 }
 
 #content a {
-  text-decoration: none;
-  color: #fff;
+  color: #999;
 }
