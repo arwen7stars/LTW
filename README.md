@@ -1,9 +1,9 @@
 #Tarefas:
 
 ##Claudia
-
+Login
 
 ##Daniela
-Sign Up / Register de users
+Sign Up / Register
 
 ##Tiago
