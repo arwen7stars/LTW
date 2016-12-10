@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  /* TODO width can't be a px value. e.g. open dev tools and see what happens */
   width: 900px;
   margin: 0px auto;
   font-family: 'tahoma', serif;
@@ -12,7 +13,7 @@ h1 {
   font-family: verdana, sans-serif;
 }
 
-#header {
+header {
   background-color: #C2AD9D;
   background-image: url("./resources/header_background.png");
   background-repeat: no-repeat;
@@ -41,17 +42,122 @@ h1 {
   border-width: 2px;
 }
 
-#header a{
+header a{
   text-decoration: none;
 }
 
-#header .sign {
+header .sign {
   text-align: right;
 }
 
+/* --- MENU CUSTOMIZATION --- */
 
+/* The clearfix will stop an annoying bug where,
+if a parent element has a floated child element,
+it will disappear. */
+.clearfix:after {
+  display: block;
+  clear: both;
+}
+
+.menu-wrap {
+  width: 100%;
+  background: #7E472D;
+  border: solid 1px;
+  position: relative;
+}
+
+.menu {
+  width: 100%;
+  margin: 0px auto;
+}
+
+.menu li {
+  margin: 0px;
+  /* clear list symbol (left side dot) */
+  list-style: none;
+}
+
+.menu a {
+  /* property name | duration | timing function */
+  transition: all 0.15s linear;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* make sub menu arrow smaller */
+.menu .arrow {
+  font-size:12px;
+  line-height:0%;
+}
+
+/* --- TOP LEVEL MENU CUSTOMIZATION ---  */
+
+.menu > ul > li {
+  display: inline-block;
+  position: relative;
+  font-size: 19px;
+}
+
+/* this only affects the top level links
+Two selectors are used to make sure it's the same behaviour for mouse and keyboard.
+(http://stackoverflow.com/questions/41078594/current-item-selector-in-css) */
+.menu > ul > li:hover > a, .menu > ul > .current-item > a {
+  background: #a79180;
+}
+
+/* --- BOTTOM LEVEL MENU CUSTOMIZATION --- */
+
+.sub-menu {
+  width: 160%;
+  padding: 5px 0px;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity linear 0.15s;
+  box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+  background: #7E472D;
+}
+
+.menu li:hover .sub-menu {
+  z-index:1;
+  opacity:1;
+}
+
+.sub-menu li {
+  display:block;
+  font-size:16px;
+}
+
+.sub-menu li a {
+  padding:10px 30px;
+  display:block;
+}
+
+.sub-menu li a:hover, .sub-menu .current-item a {
+  background: #a79180;
+}
+
+/* --- SEARCH BAR CUSTOMIZATION --- */
+
+.menu-wrap .search-bar {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+}
+
+/*
+.menu .arrow {
+    font-size:11px;
+    line-height:0%;
+}
+
+/*
 #menu {
   background-color: #7E472D;
+  position: relative;
 }
 
 #menu a{
@@ -83,7 +189,7 @@ form {
 	display: inline;
 	float: right;
 	padding: 0px 10px;
-}
+} */
 
 #content .restaurants {
   padding: 10px 10px;
