@@ -347,7 +347,7 @@ Nullam molestie risus quam, quis tempor eros sagittis non. Nulla facilisi.', 210
 
 INSERT INTO Review values(224, 7, 'Homely made food', 'It was good and cheap', 'Duis mollis ipsum volutpat odio auctor volutpat. Nam in vehicula nunc, aliquam tincidunt metus.', 202, 12);
 
-INSERT INTO Review values(225, 9, 'Tastiest pizza I have ever tasted', 'It was indeed delicious but a bit expensive.', 'Mauris molestie, arcu ac varius ullamcorper, risus metus elementum ipsum, eget dignissim libero dolor vel ex. Ut eu hendrerit elit, vel ullamcorper ex.\n 
+INSERT INTO Review values(225, 9, 'Tastiest pizza I have ever tasted', 'It was indeed delicious but a bit expensive.', 'Mauris molestie, arcu ac varius ullamcorper, risus metus elementum ipsum, eget dignissim libero dolor vel ex. Ut eu hendrerit elit, vel ullamcorper ex.\n
 Sed consequat metus id dictum mollis. Ut nunc nisi, pulvinar in elit et, placerat rhoncus est. Nam vitae orci eu sapien lacinia sodales. Nullam quam lectus, rhoncus ut mauris sed, euismod tempus ligula.', 211, 13);
 INSERT INTO Review values(226, 10, 'BEST PIZZA EVER!!', 'There is no better pizza out there, I assure you!', 'Fusce tempor posuere est vitae commodo. Aenean tempor feugiat interdum. Pellentesque nec nunc sapien. Duis auctor commodo lorem at lacinia.\n
 Phasellus a maximus libero. Duis urna orci, fermentum sit amet risus ut, tempus rutrum justo. Maecenas quis justo diam. Etiam quis auctor magna. In non velit ante. Nulla purus neque, interdum sed enim nec, fermentum ultrices sem.', 189, 13);
