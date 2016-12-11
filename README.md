@@ -1,7 +1,7 @@
 #Tarefas:
 
 ##Claudia
-Login
+[FEITO] Login
 
 ##Daniela
 Sign Up / Register
