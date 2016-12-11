@@ -7,4 +7,5 @@ Login
 Sign Up / Register
 
 ##Tiago
-Drop down top 10 restaurantes
+[COMPLETE] Drop down top 10 restaurantes
+Restaurant Page
