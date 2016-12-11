@@ -1,3 +1,6 @@
+/* TODO this should be removed and replaced by header.css and footer.css
+Also make website.css for general stuff, like bg color etc */
+
 html {
   background-color: #FFF9F4;
 }
@@ -147,49 +150,6 @@ Two selectors are used to make sure it's the same behaviour for mouse and keyboa
   top: 50%;
   right: 0px;
 }
-
-/*
-.menu .arrow {
-    font-size:11px;
-    line-height:0%;
-}
-
-/*
-#menu {
-  background-color: #7E472D;
-  position: relative;
-}
-
-#menu a{
-  color: #ffffff;
-  text-decoration: none;
-}
-
-#menu ul {
-  list-style-type: none;
-  padding: 0;
-  padding: 10px 0px;
-  margin: 0px;
-}
-
-#menu li {
-  display: inline;
-  border: none;
-}
-
-#menu li a {
-  padding: 10px;
-}
-
-#menu li a:hover {
-  background: #a79180;
-}
-
-form {
-	display: inline;
-	float: right;
-	padding: 0px 10px;
-} */
 
 #content .restaurants {
   padding: 10px 10px;

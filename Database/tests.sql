@@ -94,3 +94,14 @@ FROM RestaurantOwners, Owner, User, Restaurant
 WHERE RestaurantOwners.restaurant = Restaurant.id
 AND RestaurantOwners.owner = Owner.id
 AND User.id = Owner.id;
+
+.print "\n"
+
+.print "-> Select info from restaurant id = 51\n"
+SELECT name, description, address, type AS priceRange, AVG(Review.score) AS restScore
+FROM Restaurant, Review, PriceRange
+WHERE Restaurant.id = 51
+AND Review.restaurant = Restaurant.id
+AND Restaurant.priceRange = PriceRange.id
+GROUP BY name
+ORDER BY restScore DESC LIMIT 10;

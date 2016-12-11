@@ -40,20 +40,4 @@ $db = new PDO('sqlite:Database/database.db');
       <form class="search-bar"><input type="text" placeholder="Search..." required><input type="button" value="Search"></form>
     </div>
 
-    <!--
-    <nav id="menu">
-      <ul>
-        <li><a href="./">Home</a></li>
-        <li>
-          <a href="./restaurant.php">Restaurants &#9660;</a>
-          <ul class="dropDownMenu">
-            <li><a href="#">Top 10</a></li>
-          </ul>
-        </li>
-        <li><a href="./review.php">Reviewers</a></li>
-        <li id="seachBar"><form><input type="text" placeholder="Search..." required><input type="button" value="Search"></form></li>
-      </ul>
-    </nav>
-    -->
-
     <div id="content">

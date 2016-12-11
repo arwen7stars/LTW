@@ -10,7 +10,7 @@ include_once("includes/header.php");
 
     // prepare query TODO make limit come from url and get it with post, for top 10, 100 etc
     $stmt = $db->prepare(
-    'SELECT name, AVG(Review.score) AS restScore
+    'SELECT Restaurant.id AS id, name, AVG(Review.score) AS restScore
     FROM Restaurant, Review
     WHERE Review.restaurant = Restaurant.id
     GROUP BY name
@@ -21,7 +21,7 @@ include_once("includes/header.php");
 
     while ($row = $stmt->fetch()) { ?>
 
-      <li><a href="#"><?= $row['name'] ?></a> <?= $row['restScore'] ?>/10</li>
+      <li><a href="restaurantProfile.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a> <?= $row['restScore'] ?>/10</li>
 
       <?php } ?>
 

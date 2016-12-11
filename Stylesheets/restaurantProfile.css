@@ -1,0 +1,204 @@
+/* TODO remove website generics, header and footer stuff
+Careful with width of body on generics! */
+
+/* --- WEBSITE GENERICS --- */
+
+html {
+  background-color: #FFF9F4;
+}
+
+body {
+  font-family: 'tahoma', serif;
+}
+
+h1 {
+  font-family: verdana, sans-serif;
+}
+
+/* --- !WEBSITE GENERICS --- */
+
+/* --- HEADER --- */
+
+.website-header {
+  width: 900px;
+  margin: 0px auto;
+  background-color: #C2AD9D;
+  background-image: url("../resources/header_background.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  text-shadow: 1px 1px 1px #000000;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.signup {
+  background-color: #7E472D;
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+  border-style: solid;
+  border-color: #7E472D;
+  border-width: 2px;
+}
+
+.login {
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+  border-style: solid;
+  border-color: #7E472D;
+  border-width: 2px;
+}
+
+header a{
+  text-decoration: none;
+}
+
+header .sign {
+  text-align: right;
+}
+
+/* --- MENU CUSTOMIZATION --- */
+
+/* The clearfix will stop an annoying bug where,
+if a parent element has a floated child element,
+it will disappear. */
+.clearfix:after {
+  display: block;
+  clear: both;
+}
+
+.menu-wrap {
+  width: 900px;
+  margin: 0px auto;
+  background: #7E472D;
+  border: solid 1px;
+  position: relative;
+}
+
+.menu {
+  width: 100%;
+  margin: 0px auto;
+}
+
+.menu li {
+  margin: 0px;
+  /* clear list symbol (left side dot) */
+  list-style: none;
+}
+
+.menu a {
+  /* property name | duration | timing function */
+  transition: all 0.15s linear;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* make sub menu arrow smaller */
+.menu .arrow {
+  font-size:12px;
+  line-height:0%;
+}
+
+/* --- TOP LEVEL MENU CUSTOMIZATION ---  */
+
+.menu > ul > li {
+  display: inline-block;
+  position: relative;
+  font-size: 19px;
+}
+
+/* this only affects the top level links
+Two selectors are used to make sure it's the same behaviour for mouse and keyboard.
+(http://stackoverflow.com/questions/41078594/current-item-selector-in-css) */
+.menu > ul > li:hover > a, .menu > ul > .current-item > a {
+  background: #a79180;
+}
+
+/* --- BOTTOM LEVEL MENU CUSTOMIZATION --- */
+
+.sub-menu {
+  width: 160%;
+  padding: 5px 0px;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity linear 0.15s;
+  box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+  background: #7E472D;
+}
+
+.menu li:hover .sub-menu {
+  z-index:1;
+  opacity:1;
+}
+
+.sub-menu li {
+  display:block;
+  font-size:16px;
+}
+
+.sub-menu li a {
+  padding:10px 30px;
+  display:block;
+}
+
+.sub-menu li a:hover, .sub-menu .current-item a {
+  background: #a79180;
+}
+
+/* --- SEARCH BAR CUSTOMIZATION --- */
+
+.menu-wrap .search-bar {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+}
+
+/* --- !HEADER --- */
+
+.restaurantProfile {
+  position: relative;
+}
+
+.header-wrap {
+  width: 70%;
+  /* center */
+  margin: 0px auto;
+}
+
+.imgGallery-wrap {
+  width: 70%;
+  /* center */
+  margin: 0px auto;
+  overflow: hidden;
+}
+
+.description-wrap {
+  width: 70%;
+  /* center */
+  margin: 0px auto;
+}
+
+.recentReview-wrap {
+  /* 100% - description-wrap width - 0.5 (as long as description-wrap is centered ) */
+  width: 14.5%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+
+/* --- FOOTER --- */
+
+#footer {
+  margin-top: 10px;
+  border-top: 1px solid black;
+  clear: both;
+}
+
+/* --- !FOOTER --- */

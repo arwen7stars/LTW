@@ -1,0 +1,12 @@
+organizar isto como se fosse classes em c++, com includes no topo etc (classe de reviews que contem funçoes de get reviews, etc)
+chromePhp include
+header e footer sem inicio e fim de tags (nao podem ter body nem head etc)
+mover css para pasta so de css
+eliminar ficheiros content.php
+mover ficheiros para dentro de pastas adequadas (restaurant, reviews, user, etc)
+conexa a base de dados num ficheiro a parte (atraves de funçao), feito include APENAS UMA VEZ a seguir a include de header
+rename de ficheiros adequadamente
+pastas com primeira letra MINUSCULA
+rename de pasta includes
+mudar nome de site. & triggering
+check TODO list
