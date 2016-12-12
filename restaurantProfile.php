@@ -8,14 +8,14 @@
   <!-- TODO include website.css once it is done -->
   <!-- TODO include header.css once it is done -->
   <!-- TODO include footer.css once it is done -->
-  <link rel="stylesheet" href="Stylesheets/restaurantProfile.css">
+  <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
   <script type="text/javascript" src="imageSlideShow.js" defer></script>
 </head>
 
 <?php
 // TODO replace this with include connect database
 // connect to database
-$db = new PDO('sqlite:Database/database.db');
+$db = new PDO('sqlite:database/database.db');
 ?>
 
 <body>

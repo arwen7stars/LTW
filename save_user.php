@@ -1,6 +1,6 @@
 <?php
   include_once("connection.php");
-  include_once("./Utilities/utils.php");
+  include_once("./utilities/utils.php");
     //if (!isset($_POST['id'])) die('No id');
     if (!isset($_POST['username']) || trim($_POST['username']) == '') die('Username is mandatory');
     if (!isset($_POST['email']) || trim($_POST['email']) == '') die('Email is mandatory');

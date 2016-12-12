@@ -4,7 +4,7 @@
 
 <?php
 // connect to database
-$db = new PDO('sqlite:Database/database.db');
+$db = new PDO('sqlite:database/database.db');
 ?>
 
   <head>
