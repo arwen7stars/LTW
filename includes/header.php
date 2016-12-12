@@ -18,8 +18,8 @@ $db = new PDO('sqlite:Database/database.db');
     <header>
       <h1>EAT&AVAIL</h1>
       <div class="sign">
-        <a href="/" class="signup" title="SIGN UP">SIGN UP</a>
-        <a href="/" class="login" title="LOGIN">Login</a>
+        <a href="../register.php" class="signup" title="SIGN UP">SIGN UP</a>
+        <a href="#" class="login" title="LOGIN">Login</a>
       </div>
     </header>
 
