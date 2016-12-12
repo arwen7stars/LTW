@@ -17,10 +17,17 @@ $db = new PDO('sqlite:Database/database.db');
 
     <header>
       <h1>EAT&AVAIL</h1>
+      <?php
+		include_once('./includes/constants.php');
+
+		if (!(isset($_SESSION[$LOGGEDIN]) && $_SESSION[$LOGGEDIN] == true)) { ?>
+
       <div class="sign">
         <a href="../register.php" class="signup" title="SIGN UP">SIGN UP</a>
-        <a href="#" class="login" title="LOGIN">Login</a>
+        <a href="./login_page.php" class="login" title="LOGIN">Login</a>
       </div>
+      <?php } ?>
+
     </header>
 
     <div class="menu-wrap">
@@ -35,6 +42,18 @@ $db = new PDO('sqlite:Database/database.db');
             </ul>
           </li>
           <li><a href="review.php">Reviewers</a></li>
+          <?php
+			if (isset($_SESSION[$LOGGEDIN]) && $_SESSION[$LOGGEDIN] == true) { ?>
+				<li>
+				<?php echo $_SESSION['username']; ?>
+				<span class="arrow">&#9660;</span>
+
+					<ul class="sub-menu">
+						<li><a href="profile.php">Profile</a></li>
+						<li><a href="database/action_logout.php">Logout</a></li>
+					</ul>
+				</li>
+			<?php } ?>
         </ul>
       </nav>
       <form class="search-bar"><input type="text" placeholder="Search..." required><input type="button" value="Search"></form>
