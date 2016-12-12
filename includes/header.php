@@ -23,7 +23,7 @@ $db = new PDO('sqlite:database/database.db');
 		if (!(isset($_SESSION[$LOGGEDIN]) && $_SESSION[$LOGGEDIN] == true)) { ?>
 
       <div class="sign">
-        <a href="../register.php" class="signup" title="SIGN UP">SIGN UP</a>
+        <a href="./register.php" class="signup" title="SIGN UP">SIGN UP</a>
         <a href="./login_page.php" class="login" title="LOGIN">Login</a>
       </div>
       <?php } ?>
