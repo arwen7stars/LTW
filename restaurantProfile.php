@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
-  <script type="text/javascript" src="imageSlideShow.js" defer></script>
+  <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="scripts/imageSlideShow.js" defer></script>
 </head>
 
 
@@ -52,28 +53,34 @@
       <h1 class="name"><?= $restaurantInfo['name'] ?></h1>
     </header>
 
-    <div class="imgGallery-wrap">
-      <h2>Image Gallery</h2>
+    <!--<h2>Image Gallery</h2>-->
 
-      <?php
+    <!-- IMAGE GALLERY (SLIDESHOW) -->
 
-      // get restaurant images
-      $stmt = $db->prepare(
-        'SELECT url, description
-        FROM Image
-        WHERE Image.restaurant = :restaurantId');
+    <!--
+    http://i.imgur.com/ZG2WCNP.jpg
+    http://i.imgur.com/fQDtGXU.jpg
+    http://i.imgur.com/aSirRq7.jpg
+    -->
 
-      // bind, execute and fetch
-      $stmt->bindParam(':restaurantId', $restaurantId);
-      $stmt->execute();
+    <div class="img-gallery-wrap">
 
-      while ($img = $stmt->fetch()) { ?>
+      <div class="img-wrap">
+        <img class="img-slide" src="http://i.imgur.com/ZG2WCNP.jpg">
+        <img class="img-slide" src="http://i.imgur.com/fQDtGXU.jpg">
+        <img class="img-slide" src="http://i.imgur.com/aSirRq7.jpg">
+      </div>
 
-        <img class="slideShow" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>">
+      <div class="dot-wrap">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
 
-      <?php } ?>
 
     </div>
+
+    <!-- IMAGE GALLERY (SLIDESHOW) -->
 
     <div class="description-wrap">
       <h2>Description</h2>
