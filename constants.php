@@ -1,5 +1,6 @@
 <?php
 $LOGGEDIN = "loggedin";
-$BAD_USERNAME = "bad username";
-$BAD_PASSWORD = "incorrect password";
+$OWNER = "owner";
+$REVIEWER = "reviewer";
+$DEFAULT_URL = "resources/default.jpg";
 ?>

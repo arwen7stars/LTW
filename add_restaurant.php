@@ -37,10 +37,10 @@
       <label>Price: </label>
 
       <select name="price">
-          <option value="free">Free</option>
-          <option value="cheap">Cheap</option>
-          <option value="average">Average</option>
-          <option value="expensive">Expensive</option>
+          <option value="Free">Free</option>
+          <option value="Cheap">Cheap</option>
+          <option value="Average">Average</option>
+          <option value="Expensive">Expensive</option>
       </select>
 
       <br><br>
