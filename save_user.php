@@ -1,6 +1,4 @@
 <?php
-  include_once("connection.php");
-  include_once("./utilities/utils.php");
     //if (!isset($_POST['id'])) die('No id')
 
     echo $_POST['username'], " ",$_POST['location']," ", $_POST['password'], " ";

@@ -5,6 +5,7 @@
   <?php
 
   // prepare query TODO allow user to decide LIMIT in his profle settings
+
   $stmt = $db->prepare(
   'SELECT score, tldr, body, name
   FROM Review, Reviewer, User
@@ -14,7 +15,6 @@
 
 	// fetch reviews
   $stmt->execute();
-
   while ($row = $stmt->fetch()) { ?>
 
     <section>
