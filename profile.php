@@ -46,11 +46,12 @@
 
     <?php
 
-    if(isset($_SESSION[$OWNER]) && isset($_SESSION[$REVIEWER])){
+    if(isset($_SESSION[$OWNER]) && ($_SESSION[$OWNER] == true)
+    && isset($_SESSION[$REVIEWER]) && ($_SESSION[$REVIEWER] == true)){
         echo 'Owner & Reviewer';
-    } else if(isset($_SESSION[$OWNER]))
+    } else if(isset($_SESSION[$OWNER]) && ($_SESSION[$OWNER] == true))
         echo 'Owner';
-    else if(isset($_SESSION[$REVIEWER]))
+    else if(isset($_SESSION[$REVIEWER]) && ($_SESSION[$REVIEWER] == true))
         echo 'Reviewer';
     else echo 'Normal user';
      

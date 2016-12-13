@@ -1,7 +1,7 @@
 <?php
-      include_once('connection.php'); 
-      include_once('restaurants_database.php');
-      include_once('users_database.php');
+      include_once(dirname(__FILE__) . '/connection.php');
+      include_once(dirname(__FILE__) . '/restaurants_database.php');
+      include_once(dirname(__FILE__) . '/users_database.php');
 
       session_start();
 

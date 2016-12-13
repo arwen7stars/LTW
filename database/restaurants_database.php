@@ -53,7 +53,7 @@
     function registerRestaurant($name, $description, $location, $priceRange) {
         global $db;
 
-        include_once("../utilities/utils.php");
+        include_once(dirname(__FILE__) . '/../utilities/utils.php');
 
         $id = getNextId($db);
         $price_id = getPriceRangeId($priceRange);

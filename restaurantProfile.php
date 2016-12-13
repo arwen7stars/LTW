@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
-  <script type="text/javascript" src="imageSlideShow.js" defer></script>
+  <script type="text/javascript" src="utilities/imageSlideShow.js" defer></script>
 </head>
 
 
