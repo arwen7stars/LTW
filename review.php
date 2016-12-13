@@ -14,6 +14,7 @@
 
   <?php
     session_start();
+    include_once(dirname(__FILE__) . "/database/connection.php");
     include_once(dirname(__FILE__) . "/includes/header.php");
   ?>
 
