@@ -3,13 +3,13 @@
 <html>
 
 <head>
-  	<title>EAT&AVAIL</title>
-  	<meta charset="UTF-8">
-    <link rel="stylesheet" href="stylesheets/header.css">
-    <link rel="stylesheet" href="stylesheets/index.css">
-    <link rel="stylesheet" href="stylesheets/footer.css">
-
-	</head>
+	<title>EAT&AVAIL</title>
+	<meta charset="UTF-8">
+  <link rel="stylesheet" href="stylesheets/global-style.css">
+  <link rel="stylesheet" href="stylesheets/header.css">
+  <link rel="stylesheet" href="stylesheets/index.css">
+  <link rel="stylesheet" href="stylesheets/footer.css">
+</head>
 
 <body>
 

@@ -1,4 +1,4 @@
-header {
+.website-header {
   background-color: #C2AD9D;
   background-image: url("../resources/header_background.png");
   background-repeat: no-repeat;
@@ -27,11 +27,11 @@ header {
   border-width: 2px;
 }
 
-header a{
+.website-header a{
   text-decoration: none;
 }
 
-header .sign {
+.website-header .sign {
   text-align: right;
 }
 

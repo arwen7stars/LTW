@@ -5,48 +5,22 @@
 <head>
   <title>EAT&AVAIL</title>
   <meta charset="utf-8">
-  <!-- TODO include website.css once it is done -->
-  <!-- TODO include header.css once it is done -->
-  <!-- TODO include footer.css once it is done -->
+  <link rel="stylesheet" href="stylesheets/global-style.css">
+  <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
+  <link rel="stylesheet" href="stylesheets/footer.css">
   <script type="text/javascript" src="imageSlideShow.js" defer></script>
 </head>
 
-<?php
-// TODO replace this with include connect database
-// connect to database
-$db = new PDO('sqlite:database/database.db');
-?>
 
 <body>
 
-  <!-- TODO include header.php instead -->
-  <!-- HEADER -->
-  <header class="website-header">
-    <h1>EAT&AVAIL</h1>
-    <div class="sign">
-      <a href="/" class="signup" title="SIGN UP">SIGN UP</a>
-      <a href="/" class="login" title="LOGIN">Login</a>
-    </div>
-  </header>
+  <?php //TODO pagina esta mal quando nao ha reviews
+  session_start();
+  include_once(dirname(__FILE__) . "/database/connection.php");
+  include_once(dirname(__FILE__) . "/includes/header.php");
+  ?>
 
-  <div class="menu-wrap">
-    <nav class="menu">
-      <ul class="clearfix">
-        <li><a href=".">Home</a></li>
-        <li>
-          <a href="restaurant.php">Restaurants <span class="arrow">&#9660;</span></a>
-          <ul class="sub-menu">
-            <li><a href="topRestaurants.php">Top 10</a></li>
-            <li><a href="#">Top 100</a></li>
-          </ul>
-        </li>
-        <li><a href="review.php">Reviewers</a></li>
-      </ul>
-    </nav>
-    <form class="search-bar"><input type="text" placeholder="Search..." required><input type="button" value="Search"></form>
-  </div>
-  <!-- !HEADER -->
 
   <!-- RESTAURANT INFO -->
   <?php
@@ -141,12 +115,7 @@ $db = new PDO('sqlite:database/database.db');
 
   </section>
 
-  <!-- TODO include footer.php instead -->
-  <!-- FOOTER -->
-  <div id="footer">
-    <b><center>Powered up by cool&genius people 8)</center></b>
-  </div>
-  <!-- !FOOTER -->
+  <?php include_once(dirname(__FILE__) . "/includes/footer.php"); ?>
 
 </body>
 

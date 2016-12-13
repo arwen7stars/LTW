@@ -1,4 +1,4 @@
-<header>
+<header class="website-header">
 		<h1>EAT&AVAIL</h1>
 		<?php
 	if (!(isset($_SESSION['username'])))
