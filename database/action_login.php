@@ -1,7 +1,7 @@
 <?php
-  include_once('connection.php'); // connects to the database
-  include_once('users_database.php');      // loads the functions responsible for the users table
-  include_once('../includes/constants.php');
+  include_once(dirname(__FILE__) . '/connection.php');           // connects to the database
+  include_once(dirname(__FILE__) . '/users_database.php');      // loads the functions responsible for the users table
+  include_once(dirname(__FILE__) . '../includes/constants.php');
 
   if (session_status() == PHP_SESSION_NONE)
     session_start();

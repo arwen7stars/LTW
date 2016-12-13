@@ -4,11 +4,10 @@
 
     // prepare query
     $stmt = $db->prepare(
-    'SELECT name, description, address, priceRange
+    'SELECT *
     FROM RestaurantOwners, Restaurant
     WHERE RestaurantOwners.owner = :userId
-    AND RestaurantOwners.restaurant = Restaurant.id
-    ORDER BY Restaurant.id DESC LIMIT 3');
+    AND RestaurantOwners.restaurant = Restaurant.id');
 
     // bind and execute
     $stmt->bindParam(':userId', $id);
@@ -18,18 +17,56 @@
     }
 
     function getPriceRange($id) {
-    global $db;
+        global $db;
 
-    // prepare query
-    $stmt = $db->prepare(
-    'SELECT *
-    FROM PriceRange
-    WHERE id = :id');
+        // prepare query
+        $stmt = $db->prepare(
+        'SELECT *
+        FROM PriceRange
+        WHERE id = :id');
 
-    // bind and execute
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
+        // bind and execute
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
 
-    return $stmt->fetch();
+        return $stmt->fetch();
     }
+
+    function getPriceRangeId($type) {
+        global $db;
+        
+        // prepare query
+        $stmt = $db->prepare(
+        'SELECT *
+        FROM PriceRange
+        WHERE type = :type');
+
+        // bind and execute
+        $stmt->bindParam(':type', $type);
+        $stmt->execute();
+
+        $row = $stmt->fetch();
+
+        return $row['id'];
+    }
+
+    function registerRestaurant($name, $description, $location, $priceRange) {
+        global $db;
+
+        include_once(dirname(__FILE__) . '/../utilities/utils.php');
+
+        $id = getNextId($db);
+        $price_id = getPriceRangeId($priceRange);
+        $stmt = $db->prepare('INSERT INTO Restaurant (id, name, description, address, priceRange) VALUES (?,?,?,?,?)');
+        $stmt->execute(array($id, $name, $description, $location, $price_id));
+
+        return $id;
+     }
+
+     function setRestaurantOwner($rest_id, $user_id){
+         global $db;
+         
+         $stmt = $db->prepare('INSERT INTO RestaurantOwners (restaurant, owner) VALUES (?,?)');
+         $stmt->execute(array($rest_id,$user_id));
+     }
 ?>
