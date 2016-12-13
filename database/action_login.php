@@ -1,6 +1,6 @@
 <?php
   include_once('connection.php'); // connects to the database
-  include_once('users.php');      // loads the functions responsible for the users table
+  include_once('users_database.php');      // loads the functions responsible for the users table
   include_once('../includes/constants.php');
 
   if (session_status() == PHP_SESSION_NONE)

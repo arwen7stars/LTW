@@ -74,7 +74,7 @@ it will disappear. */
 }
 
 .menu ul {
-  margin: 0;
+  margin: 0;  
   padding: 0;
 }
 
@@ -87,14 +87,14 @@ it will disappear. */
 .menu a {
   /* property name | duration | timing function */
   transition: all 0.15s linear;
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
 }
 
 /* make sub menu arrow smaller */
 .menu .arrow {
-  font-size: 1rem;
-  line-height: 0%;
+  font-size:1rem;
+  line-height:0%;
 }
 
 /* --- TOP LEVEL MENU CUSTOMIZATION ---  */
@@ -102,27 +102,33 @@ it will disappear. */
 .menu > ul > li {
   display: inline-block;
   position: relative;
-  font-size: 19px;
+  font-size: 1.2rem;
+}
+
+.menu > ul > li:hover {
+  background: #a79180;
 }
 
 /* this only affects the top level links
 Two selectors are used to make sure it's the same behaviour for mouse and keyboard.
 (http://stackoverflow.com/questions/41078594/current-item-selector-in-css) */
-.menu > ul > li:hover > a, .menu > ul > .current-item > a {
-  background: #a79180;
+.menu > ul > .current-item > a {
+ background: #a79180;
 }
 
 /* --- BOTTOM LEVEL MENU CUSTOMIZATION --- */
 
 .sub-menu {
   width: 100%;
+  padding: 0rem;
+  margin: 0rem;
   position: absolute;
   top: 100%;
-  left: 0px;
+  left: 0rem;
   z-index: -1;
   opacity: 0;
   transition: opacity linear 0.15s;
-  box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+  box-shadow: 0rem 0.1rem 0.2rem rgba(0,0,0,0.2);
   background: #7E472D;
 }
 
@@ -132,12 +138,13 @@ Two selectors are used to make sure it's the same behaviour for mouse and keyboa
 }
 
 .sub-menu li {
+  padding:0rem;
   display:block;
-  font-size: 1rem;
+  font-size:0.8rem;
 }
 
 .sub-menu li a {
-  padding: 1rem;
+  padding: 0.5rem;
   display:block;
 }
 
@@ -148,9 +155,10 @@ Two selectors are used to make sure it's the same behaviour for mouse and keyboa
 /* --- SEARCH BAR CUSTOMIZATION --- */
 
 .menu-wrap .search-bar {
+  padding: 0rem 1rem;
   position: absolute;
   top: 20%;
-  right: 0px;
+  right: 0rem;
 }
 
 #content .restaurants {
@@ -202,7 +210,7 @@ Two selectors are used to make sure it's the same behaviour for mouse and keyboa
     box-sizing: border-box;
 }
 
-#content input[type=submit] {
+#content .login_form input[type=submit] {
     width: 100%;
     padding: 0.9rem 0rem;
     font-size: 1rem;
