@@ -46,7 +46,7 @@
     </p>
 
     <p><label>Username</label>
-    <input type="text" name="username" value= <?php echo $_SESSION['username'] ?> ></p>
+    <input type="text" name="username" value= <?= $_SESSION['username'] ?> ></p>
 
     <p><label>New password</label>
     <input type="password" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}$"></p>
@@ -55,13 +55,23 @@
 <h2>Profile settings</h2>
 
 <p><label>Location </label><select name="location">
-    <option value="-1" selected>Location</option>
-    <?php
-    include_once(dirname(__FILE__) . "/location_combobox.php");
-    ?>
+    <option value="-1">Location</option>
+<?php
+    $areaNameStmt= $db->prepare(
+        'SELECT name, id
+        FROM ResidenceArea');
+        $areaNameStmt->execute();
+
+    while($row = $areaNameStmt->fetch()) { 
+      if($user_info['residenceArea'] == $row['id']){?>
+        <option value="<?= $row['id'] ?>" selected="selected"> <?= $row['name'] ?> </option>
+<?php } else{ ?>
+        <option value="<?= $row['id'] ?>"> <?= $row['name'] ?> </option>
+<?php }
+} ?>
 </select></p>
 
-<p><label>Birth date: </label><input type="date" name="birth_date" value= <?php echo $user_info['dataOfBirth'] ?> ></p>
+<p><label>Birth date: </label><input type="date" name="birth_date" max="<?= $user_info['dateJoined'] ?>" value="<?= $user_info['dataOfBirth'] ?>" ></p>
 
 <p><label>Profile picture: </label> <input type="file" name="image">
 

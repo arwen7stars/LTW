@@ -28,19 +28,27 @@
       <br><br>
       <label>Description: </label><textarea name="description" required="required" rows="3" cols="30"></textarea>
   	<br><br>
-      <label>Location: </label> <input type="text" name="location">
+      <label>Location: </label> <input type="text" name="location" required="required">
 
   	<br><br>
-      <label>Image: </label> <input type="file" name="image">
+      <label>Image: </label> <input type="file" name="image"><br>
+      <label>Image description: </label><input type="text" name="image_title">
 
       <br><br>
       <label>Price: </label>
 
       <select name="price">
-          <option value="Free">Free</option>
-          <option value="Cheap">Cheap</option>
-          <option value="Average">Average</option>
-          <option value="Expensive">Expensive</option>
+<?php
+    $priceRange= $db->prepare(
+        'SELECT type, id
+        FROM PriceRange');
+        $priceRange->execute();
+
+    while($row = $priceRange->fetch()) { ?>
+
+        <option value=<?php echo $row['id'] ?> > <?php echo $row['type'] ?> </option>
+
+<?php } ?>
       </select>
 
       <br><br>

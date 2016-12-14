@@ -1,7 +1,7 @@
 <?php
   function check_credentials($username, $password) {
     global $db;
-    $password_encrypted = sha1($password);
+    $password_hash = hash('sha256', $password);
 
     $stmt = $db->prepare('SELECT * FROM Login WHERE username=? AND password=?');
 	$stmt->execute(array($username, $password));

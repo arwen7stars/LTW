@@ -94,14 +94,14 @@
 
         <h2>Recent Restaurants</h2>
 <?php
-        $stmt = getRestaurantsUser($user_info['id']);
+        $stmt = getRecentRestaurants($user_info['id']);
         while ($row = $stmt->fetch()) { 
             $priceRange = getPriceRange($row['priceRange']);
         ?>
 
         <section>
           <h3><?= $row['name']?> </h1>
-          <p><?= $row['address']?> - <?= $priceRange['type'] ?></p>          
+          <p><?= $row['address']?> - <?= $priceRange->fetch()['type'] ?></p>          
         </section>
 <?php } ?>
     </div>

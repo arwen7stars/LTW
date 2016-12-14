@@ -71,7 +71,7 @@
       ?>
 
 
-        <img class="slideShow" src="<?= $url ?>" alt="<?= $img['description'] ?>">
+        <img class="slideShow" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>">
 
       <?php } ?>
 
