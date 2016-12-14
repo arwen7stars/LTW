@@ -1,33 +1,88 @@
+/******************
+* GLOBAL VARIABLES
+******************/
+
+/** Index of image to display */
+var imgToDisplay = 0;
+
+/** Interval between each image switch (in milliseconds) */
+var intervalSwitchImg = 2500;
+
+/*********
+* METHODS
+*********/
+
 /**
  * Event handler to change displayed image by img-gallery
  * @param event Event
  */
-var nextImg = function(event) {
+var switchImg = function(event) {
 
-  // get index of pressed button
-  var index = event.data.index(event.target);
+	// get index of pressed button
+	imgToDisplay = event.data.index(event.target);
 
-	// fetch all images in the img-gallery
-	var imgs = $(".img-slide");
-
-	// hide chosen image
-	imgs.eq(index).css("display: none");
+	// display chosen image
+	displayImg(imgToDisplay);
 };
 
-function test(event) {
-	console.log("Dot was pressed!");
-  console.log(event.data.index(event.target));
-}
+/**
+ * Displays only the given image
+ */
+var displayImg = function() {
+
+	// fetch all images in the img-gallery
+	var imgs = $(".img-wrap");
+
+	// hide all images
+	imgs.css("display", "none");
+
+	// display only the chosen image
+	imgs.eq(imgToDisplay).css("display", "block");
+};
 
 /**
- * Main Script
- */
+* Moves displayed image to the next image
+*/
+var nextImg = function() {
+
+  // get how many dots there are
+  var nDots = $(".dot").length;
+
+  // move to next img
+  imgToDisplay++;
+
+  if (imgToDisplay >= nDots) {
+    imgToDisplay = 0;
+  }
+};
+
+/** TODO stop timer when user clicks manually
+* Automatically switchs displayed images
+*/
+var autoSlideShow = function() {
+
+  // move to next img
+  nextImg();
+
+  displayImg();
+};
+
+/*************
+* Main Script
+*************/
+
 $(document).ready(function() {
 
 	// get all dots
 	var dots = $(".dot");
 
-  // bind event handler
-  dots.click(dots, test);
+	// bind event handler
+	dots.click(dots, switchImg);
+
+	// display first img
+	displayImg();
+
+  // auto switch displayed image
+  window.setInterval(autoSlideShow, intervalSwitchImg);
 
 });
