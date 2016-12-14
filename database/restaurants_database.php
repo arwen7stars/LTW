@@ -7,6 +7,40 @@
     'SELECT *
     FROM RestaurantOwners, Restaurant
     WHERE RestaurantOwners.owner = :userId
+    AND RestaurantOwners.restaurant = Restaurant.id
+    ORDER BY Restaurant.id DESC LIMIT 3');
+
+    // bind and execute
+    $stmt->bindParam(':userId', $id);
+    $stmt->execute();
+
+    return $stmt;
+    }
+
+   function getRestaurant($id) {
+    global $db;
+
+    // prepare query
+    $stmt = $db->prepare(
+    'SELECT *
+    FROM Restaurant
+    WHERE Restaurant.id = :id');
+
+    // bind and execute
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
+    return $stmt->fetch();
+    }
+
+    function getRecentRestaurants($id) {
+    global $db;
+
+    // prepare query
+    $stmt = $db->prepare(
+    'SELECT *
+    FROM RestaurantOwners, Restaurant
+    WHERE RestaurantOwners.owner = :userId
     AND RestaurantOwners.restaurant = Restaurant.id');
 
     // bind and execute
@@ -53,7 +87,7 @@
     function registerRestaurant($name, $description, $location, $priceRange) {
         global $db;
 
-        include_once("../utilities/utils.php");
+        include_once(dirname(__FILE__) . '/../utilities/utils.php');
 
         $id = getNextId($db);
         $price_id = getPriceRangeId($priceRange);

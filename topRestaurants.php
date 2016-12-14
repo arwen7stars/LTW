@@ -35,9 +35,11 @@
       // fetch reviews
       $stmt->execute();
 
-      while ($row = $stmt->fetch()) { ?>
+      while ($row = $stmt->fetch()) { 
+    $score = number_format(round($row['restScore'],2),2);
+      ?>
 
-        <li><a href="restaurantProfile.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a> <?= $row['restScore'] ?>/10</li>
+        <li><a href="restaurantProfile.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a> <?= $score ?>/10</li>
 
       <?php } ?>
 

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
-  <script type="text/javascript" src="imageSlideShow.js" defer></script>
+  <script type="text/javascript" src="utilities/imageSlideShow.js" defer></script>
 </head>
 
 
@@ -67,9 +67,11 @@
       $stmt->bindParam(':restaurantId', $restaurantId);
       $stmt->execute();
 
-      while ($img = $stmt->fetch()) { ?>
+      while ($img = $stmt->fetch()) { 
+      ?>
 
-        <img class="slideShow" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>">
+
+        <img class="slideShow" src="<?= $url ?>" alt="<?= $img['description'] ?>">
 
       <?php } ?>
 
