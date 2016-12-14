@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
-  <!-- TODO download da biblioteca e inclui-la no projecto -->
   <script src="includes/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="scripts/imageSlideShow.js" defer></script>
 </head>
@@ -19,8 +18,8 @@
 
   <?php //TODO pagina esta mal quando nao ha reviews
   session_start();
-  include_once(dirname(__FILE__) . "/database/connection.php");
-  include_once(dirname(__FILE__) . "/includes/header.php");
+  include_once dirname(__FILE__).'/database/connection.php';
+  include_once dirname(__FILE__).'/includes/header.php';
   ?>
 
 
@@ -37,13 +36,30 @@
     WHERE Restaurant.id = :restaurantId
     AND Review.restaurant = Restaurant.id
     AND Restaurant.priceRange = PriceRange.id
-    GROUP BY name
-    ORDER BY restScore DESC LIMIT 10');
+    GROUP BY name');
 
   // bind, execute and fetch
   $stmt->bindParam(':restaurantId', $restaurantId);
   $stmt->execute();
   $restaurantInfo = $stmt->fetch();
+
+  // get restaurant score
+  $stmt = $db->prepare(
+  'SELECT AVG(Review.score) AS restScore
+  FROM Restaurant, Review
+  WHERE Restaurant.id = :restaurantId
+  AND Review.restaurant = Restaurant.id
+  GROUP BY name');
+
+  // bind, execute and fetch
+  $stmt->bindParam(':restaurantId', $restaurantId);
+  $stmt->execute();
+  $restaurantScore = $stmt->fetch();
+
+  if ($restaurantScore.length == 0) {
+    /* TODO aqui */
+    $restaurantScore = 'No Reviews available for this restaurant';
+  }
 
   ?>
   <!-- !RESTAURANT INFO -->
@@ -66,14 +82,39 @@
 
     <div class="img-gallery-wrap">
 
-      <div class="img-wrap">
-        <img class="img-slide" src="http://i.imgur.com/ZG2WCNP.jpg">
-      </div>
-      <div class="img-wrap">
-        <img class="img-slide" src="http://i.imgur.com/fQDtGXU.jpg">
-      </div>
-      <div class="img-wrap">
-        <img class="img-slide" src="http://i.imgur.com/aSirRq7.jpg">
+      <?php
+      // get restaurant images
+      $stmt = $db->prepare(
+        'SELECT url, description
+        FROM Image
+        WHERE Image.restaurant = :restaurantId');
+
+      // bind, execute and fetch
+      $stmt->bindParam(':restaurantId', $restaurantId);
+      $stmt->execute();
+
+      // number of images found
+      $nImg = 0;
+
+      while ($img = $stmt->fetch()) {
+        ?>
+        <div class="img-wrap">
+          <img class="img-slide" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>">
+        </div>
+      <?php
+        $nImg++;
+      } ?>
+
+      <div class="dot-wrap">
+
+        <?php
+        // create dots
+        for ($i = 0; $i < $nImg; $i++) {
+          ?>
+          <span class="dot"></span>
+        <?php
+        } ?>
+
       </div>
 
       <div class="prev">
@@ -82,12 +123,6 @@
 
       <div class="next">
         <a>&#10097;</a>
-      </div>
-
-      <div class="dot-wrap">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
       </div>
 
 
@@ -119,23 +154,28 @@
       $stmt->bindParam(':restaurantId', $restaurantId);
       $stmt->execute();
 
-      while ($row = $stmt->fetch()) { ?>
+      while ($row = $stmt->fetch()) {
+
+        $tldr_clean = str_replace('\n', '<br />', $row['tldr']);
+    		$body_clean = str_replace('\n', '<br />', $row['body']);
+        ?>
 
         <section>
-          <h2 class="tldr"><?= $row['tldr']?> <?= $row['score']?>/10</h2>
+          <h2 class="tldr"><?= $tldr_clean?> <?= $row['score']?>/10</h2>
           <!-- TODO fazer display dos \n correctamente -->
-          <p class="body"><?= $row['body']?></p>
+          <p class="body"><?= $body_clean?></p>
           <!-- TODO link name of user to his profile page -->
           <p class="reviewer">Written by <?= $row['name'] ?></p>
         </section>
 
-      <?php } ?>
+      <?php
+      } ?>
 
     </aside>
 
   </section>
 
-  <?php include_once(dirname(__FILE__) . "/includes/footer.php"); ?>
+  <?php include_once dirname(__FILE__).'/includes/footer.php'; ?>
 
 </body>
 
