@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
+  <!-- TODO download da biblioteca e inclui-la no projecto -->
   <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="scripts/imageSlideShow.js" defer></script>
 </head>
@@ -67,7 +68,11 @@
 
       <div class="img-wrap">
         <img class="img-slide" src="http://i.imgur.com/ZG2WCNP.jpg">
+      </div>
+      <div class="img-wrap">
         <img class="img-slide" src="http://i.imgur.com/fQDtGXU.jpg">
+      </div>
+      <div class="img-wrap">
         <img class="img-slide" src="http://i.imgur.com/aSirRq7.jpg">
       </div>
 
