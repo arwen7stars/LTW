@@ -27,12 +27,15 @@
     } else{
     	deleteReviewerStatus($id);
     }
-	if ($_POST["password"] == $_POST["password_repeat"]) {
-		updatePassword($id, $_POST["password"]);
-	}
-	else {
-	   // TODO INFORM USER THAT PASSWORDS DON'T MATCH
-	}
+
+    if(!empty($_POST["password"]) && (!empty($_POST["password_repeat"]))){
+		if ($_POST["password"] == $_POST["password_repeat"]) {
+			updatePassword($id, $_POST["password"]);
+		}
+		else {
+		   // TODO INFORM USER THAT PASSWORDS DON'T MATCH
+		}
+    }
 	if(!empty($_POST['username'])){
 		if(is_registered($_POST['username'])){
 			// TODO INFORM USER THAT THE GIVEN USERNAME IS ALREADY IN USE
