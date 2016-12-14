@@ -182,6 +182,12 @@
 
           $stmt->bindParam(':id', $rest_id);
           $stmt->execute();
+
+          $stmt = getOwnersRestaurant($rest_id);
+
+          while ($row = $stmt->fetch()) {  
+			deleteRestaurantOwner($rest_id, $row['id']);
+        }
      }
 
      function updateName($id, $name) {
