@@ -76,6 +76,14 @@
         <img class="img-slide" src="http://i.imgur.com/aSirRq7.jpg">
       </div>
 
+      <div class="prev">
+        <a>&#10096;</a>
+      </div>
+
+      <div class="next">
+        <a>&#10097;</a>
+      </div>
+
       <div class="dot-wrap">
         <span class="dot"></span>
         <span class="dot"></span>
