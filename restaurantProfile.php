@@ -67,9 +67,11 @@
       $stmt->bindParam(':restaurantId', $restaurantId);
       $stmt->execute();
 
-      while ($img = $stmt->fetch()) { ?>
+      while ($img = $stmt->fetch()) { 
+      ?>
 
-        <img class="slideShow" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>">
+
+        <img class="slideShow" src="<?= $url ?>" alt="<?= $img['description'] ?>">
 
       <?php } ?>
 

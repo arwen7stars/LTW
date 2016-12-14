@@ -1,5 +1,5 @@
 <?php
-    function getReviewsUser($id) {
+    function getRecentReviews($id) {
     global $db;
 
     // prepare query
@@ -17,5 +17,24 @@
 
     return $stmt;
     }
+
+    function getReviewsUser($id) {
+    global $db;
+
+    // prepare query
+    $stmt = $db->prepare(
+    'SELECT *
+    FROM Review, Reviewer, Restaurant
+    WHERE Review.reviewer = Reviewer.id
+    AND Reviewer.id = :userId
+    AND Restaurant.id = Review.restaurant');
+
+    // bind and execute
+    $stmt->bindParam(':userId', $id);
+    $stmt->execute();
+
+    return $stmt;
+    }
+
 
 ?>

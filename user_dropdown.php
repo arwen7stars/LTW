@@ -23,11 +23,11 @@ if(isset($_SESSION[$OWNER]) && ($_SESSION[$OWNER] == true)){ ?>
 <li><a href="my_restaurants.php">My Restaurants</a></li>
 <?php } ?>
 
-<?php if(isset($_SESSION[$OWNER]) && ($_SESSION[$OWNER] == true)){ ?>
+<?php if(isset($_SESSION[$REVIEWER]) && ($_SESSION[$REVIEWER] == true)){ ?>
 <li><a href="my_reviews.php">My Reviews</a></li>
 <?php } ?>
 
-<li><a href="edit_profile.php">Settings</a></li>
+<li><a href="settings.php">Settings</a></li>
 <li><a href="database/action_logout.php">Logout</a></li>     
 </ul>
 </li>

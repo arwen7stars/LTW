@@ -13,24 +13,31 @@
 
 <body>
 
-<div id="my_restaurants">
+<div id="my_reviews">
 <?php
 session_start();
 
 include_once(dirname(__FILE__) . '/database/connection.php');
 include_once(dirname(__FILE__) . '/database/restaurants_database.php');
-include_once(dirname(__FILE__) . '/database/users_database.php');
+include_once(dirname(__FILE__) . '/database/reviews_database.php');
 include_once(dirname(__FILE__) . "/includes/header.php");
 
 $user_id = getLoginID($_SESSION['username']);
-$stmt = getRestaurantsUser($user_id);
+$stmt = getReviewsUser($user_id);
 
-while ($row = $stmt->fetch()) { ?>
-<li><a href="restaurantProfile.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a></li>
+while ($row = $stmt->fetch()) { 
+$rest_info = getRestaurant($row['restaurant']);
+?>
+<ul>
+<h3><?= $row['title'] ?>: <?= $row['tldr'] ?>
+ (<?= $row['score'] ?>/10.0)</h3>
+<p><?= $row['body'] ?></p>
+<p>Written for <?= $rest_info['name'] ?></p>
+
+
+ </ul>
 <?php } ?>
 
-<p><a href="add_restaurant.php">Add a new restaurant!</a></p>
-</div>
 
 <?php include_once(dirname(__FILE__) . "/includes/footer.php"); ?>
 

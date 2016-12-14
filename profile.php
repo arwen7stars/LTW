@@ -75,7 +75,7 @@
     
         <h2>Recent Reviews</h2>
 <?php
-        $stmt = getReviewsUser($user_info['id']);
+        $stmt = getRecentReviews($user_info['id']);
 
         while ($row = $stmt->fetch()) { ?>
 
