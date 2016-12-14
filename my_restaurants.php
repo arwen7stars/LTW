@@ -26,7 +26,13 @@ $user_id = getLoginID($_SESSION['username']);
 $stmt = getRestaurantsUser($user_id);
 
 while ($row = $stmt->fetch()) { ?>
-<li><a href="restaurantProfile.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a></li>
+<li><a href="restaurantProfile.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a>
+	<a href="edit_restaurant.php?id=<?= $row['id'] ?>" alt="EDIT">
+	<img src="resources/edit.png"></a>
+	<a href="database/action_delete_restaurant.php?id=<?= $row['id'] ?>" alt="DELETE">
+	<img src="resources/remove.png"></a>
+
+</li>
 <?php } ?>
 
 <p><a href="add_restaurant.php">Add a new restaurant!</a></p>
