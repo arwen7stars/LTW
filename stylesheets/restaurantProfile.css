@@ -1,48 +1,30 @@
-/* TODO remove website generics, header and footer stuff
-Careful with width of body on generics! */
-
-/* --- WEBSITE GENERICS --- */
-
-html {
-  background-color: #FFF9F4;
-}
-
-body {
-  font-family: 'tahoma', serif;
-}
-
-h1 {
-  font-family: verdana, sans-serif;
-}
-
-/* --- !WEBSITE GENERICS --- */
-
 .restaurantProfile {
   position: relative;
 }
 
 .header-wrap {
   width: 70%;
-  /* center */
-  margin: 0px auto;
+  margin: 0 auto; /* center */
 }
 
-.imgGallery-wrap {
-  width: 70%;
-  /* center */
-  margin: 0px auto;
-  overflow: hidden;
+.left-side {
+  position: absolute;
+  top: 5%;
+  left: 0;
+}
+
+.left-side-menu-links a {
+  text-decoration: none;
 }
 
 .description-wrap {
   width: 70%;
   /* center */
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .recentReview-wrap {
-  /* 100% - description-wrap width - 0.5 (as long as description-wrap is centered ) */
-  width: 14.5%;
+  width: 14.5%;       /* 100% - description-wrap width - 0.5 (as long as description-wrap is centered ) */
   position: absolute;
   right: 0px;
   top: 0px;

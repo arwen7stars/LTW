@@ -1,5 +1,5 @@
 <div id="user_info">
-    <?php 
+    <?php
         include_once('database/users_database.php');
         include_once('database/images_database.php');
         include_once('database/location_database.php');
@@ -12,7 +12,7 @@
         $image_info = getImageInfo($image_id);
         $location_id = $user_info['residenceArea'];
         $location_info = getLocationInfo($location_id);
-        
+
    ?>
 
     <img src="<?php echo $image_info['url'];?>"
@@ -27,7 +27,7 @@
 
 <?php if(isReviewer($user_info['id'])) { ?>
     <div id="recent_reviews">
-    
+
         <h2>Recent Reviews</h2>
 <?php
         $stmt = getReviewsUser($user_info['id']);
@@ -35,7 +35,7 @@
         while ($row = $stmt->fetch()) { ?>
 
         <section>
-          <h3 class="title"><?= $row['title']?> - 
+          <h3 class="title"><?= $row['title']?> -
           <?= $row['tldr']?> <?= $row['score']?>/10</h1>
           <!-- TODO fazer display dos \n correctamente -->
           <p class="body"><?= $row['body']?></p>
@@ -53,7 +53,7 @@
         <h2>Recent Restaurants</h2>
 <?php
         $stmt = getRestaurantsUser($user_info['id']);
-        while ($row = $stmt->fetch()) { 
+        while ($row = $stmt->fetch()) {
             $priceRange = getPriceRange($row['priceRange']);
         ?>
 
@@ -62,7 +62,7 @@
           <p class="description"<?= $row['description']?> </p>
           <p class="address"><?= $row['address']?></p>
           <p class="type"><?= $priceRange['type'] ?></p>
-          
+
         </section>
 <?php } ?>
     </div>
