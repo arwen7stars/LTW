@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="stylesheets/global-style.css">
   <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
+  <link rel="stylesheet" href="stylesheets/img-gallery.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
   <script src="includes/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="scripts/imageSlideShow.js" defer></script>
@@ -16,7 +17,7 @@
 
 <body>
 
-  <?php //TODO pagina esta mal quando nao ha reviews
+  <?php
   session_start();
   include_once dirname(__FILE__).'/database/connection.php';
   include_once dirname(__FILE__).'/includes/header.php';
@@ -31,12 +32,10 @@
 
   // get restaurant info
   $stmt = $db->prepare(
-    'SELECT name, description, address, type AS priceRange, AVG(Review.score) AS restScore
-    FROM Restaurant, Review, PriceRange
+    'SELECT name, description, address, type AS priceRange
+    FROM Restaurant, PriceRange
     WHERE Restaurant.id = :restaurantId
-    AND Review.restaurant = Restaurant.id
-    AND Restaurant.priceRange = PriceRange.id
-    GROUP BY name');
+    AND Restaurant.priceRange = PriceRange.id');
 
   // bind, execute and fetch
   $stmt->bindParam(':restaurantId', $restaurantId);
@@ -56,11 +55,6 @@
   $stmt->execute();
   $restaurantScore = $stmt->fetch();
 
-  if ($restaurantScore.length == 0) {
-    /* TODO aqui */
-    $restaurantScore = 'No Reviews available for this restaurant';
-  }
-
   ?>
   <!-- !RESTAURANT INFO -->
 
@@ -70,15 +64,20 @@
       <h1 class="name"><?= $restaurantInfo['name'] ?></h1>
     </header>
 
-    <!--<h2>Image Gallery</h2>-->
+    <aside class="left-side">
+      <nav class="left-side-menu">
+        <ul class="left-side-menu-links">
+          <li>
+            <a href="#">Details</a>
+          </li>
+          <li>
+            <a href="#">Reviews</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
 
     <!-- IMAGE GALLERY (SLIDESHOW) -->
-
-    <!--
-    http://i.imgur.com/ZG2WCNP.jpg
-    http://i.imgur.com/fQDtGXU.jpg
-    http://i.imgur.com/aSirRq7.jpg
-    -->
 
     <div class="img-gallery-wrap">
 
@@ -141,35 +140,39 @@
 
       <?php
 
-      // prepare query
-      $stmt = $db->prepare(
-        'SELECT score, tldr, body, name
-        FROM Review, Reviewer, User
-        WHERE Review.restaurant = :restaurantId
-        AND Review.reviewer = Reviewer.id
-        AND Reviewer.id = User.id
-        ORDER BY Review.id DESC LIMIT 3');
+      if ($restaurantScore != null) {
 
-      // bind and execute
-      $stmt->bindParam(':restaurantId', $restaurantId);
-      $stmt->execute();
+        // prepare query
+        $stmt = $db->prepare(
+          'SELECT score, tldr, body, name
+          FROM Review, Reviewer, User
+          WHERE Review.restaurant = :restaurantId
+          AND Review.reviewer = Reviewer.id
+          AND Reviewer.id = User.id
+          ORDER BY Review.id DESC LIMIT 3');
 
-      while ($row = $stmt->fetch()) {
+        // bind and execute
+        $stmt->bindParam(':restaurantId', $restaurantId);
+        $stmt->execute();
 
-        $tldr_clean = str_replace('\n', '<br />', $row['tldr']);
-    		$body_clean = str_replace('\n', '<br />', $row['body']);
-        ?>
+        while ($row = $stmt->fetch()) {
 
-        <section>
-          <h2 class="tldr"><?= $tldr_clean?> <?= $row['score']?>/10</h2>
-          <!-- TODO fazer display dos \n correctamente -->
-          <p class="body"><?= $body_clean?></p>
-          <!-- TODO link name of user to his profile page -->
-          <p class="reviewer">Written by <?= $row['name'] ?></p>
-        </section>
+          $tldr_clean = str_replace('\n', '<br />', $row['tldr']);
+      		$body_clean = str_replace('\n', '<br />', $row['body']);
+          ?>
 
-      <?php
-      } ?>
+          <section>
+            <h2 class="tldr"><?= $tldr_clean?> <?= $row['score']?>/10</h2>
+            <p class="body"><?= $body_clean?></p>
+            <!-- TODO link name of user to his profile page -->
+            <p class="reviewer">Written by <?= $row['name'] ?></p>
+          </section>
+
+        <?php
+        }
+      } else {
+        echo 'There are no reviews available for this restaurant yet!';
+      }?>
 
     </aside>
 

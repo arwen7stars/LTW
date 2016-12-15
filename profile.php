@@ -53,13 +53,15 @@
     <?php
             $stmt = getReviewsUser($user_info['id']);
 
-            while ($row = $stmt->fetch()) { ?>
+            while ($row = $stmt->fetch()) {
+              $tldr_clean = str_replace('\n', '<br />', $row['tldr']);
+              $body_clean = str_replace('\n', '<br />', $row['body']);
+              ?>
 
             <section>
               <h3 class="title"><?= $row['title']?> -
-              <?= $row['tldr']?> <?= $row['score']?>/10</h1>
-              <!-- TODO fazer display dos \n correctamente -->
-              <p class="body"><?= $row['body']?></p>
+              <?= $tldr_clean?> <?= $row['score']?>/10</h1>
+              <p class="body"><?= $body_clean?></p>
               <!-- TODO link name of user to his profile page -->
               <p class="reviewer">Written for <?= $row['name'] ?></p>
             </section>
