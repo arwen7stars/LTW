@@ -40,7 +40,7 @@
 }
 
 #profile .restaurants li:before {
-    content: "⇨";
+    content: "\21E8";
     padding-right: 10px;
     color: #7e472d;
 }

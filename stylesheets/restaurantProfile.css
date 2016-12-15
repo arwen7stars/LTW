@@ -12,16 +12,16 @@
     text-align: justify;
 }
 
-.restInfo-wrap li:before {
-    content: "⇨";
-    padding-right: 10px;
-    color: #7e472d;
-}
-
-.restInfo-wrap li{
+#restaurantProfile li {
   list-style: none;
   margin: 0px;
   text-align: left;
+}
+
+#restaurantProfile li:before {
+    content: "\21E8";
+    padding-right: 10px;
+    color: #7e472d;
 }
 
 .recentReview-wrap {
@@ -41,6 +41,7 @@
   margin: 10px;
   padding: 1rem;
   float:left;
+  clear:both;
   margin-right: 5%;
   margin-left: 5%;
 }

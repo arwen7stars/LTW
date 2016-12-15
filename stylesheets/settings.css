@@ -24,7 +24,7 @@ input[type=text], input[type=password] {
 }
 
 .settings li:before {
-    content: "⇨";
+    content: "\21E8";
     padding-right: 10px;
     color: #7e472d;
 }

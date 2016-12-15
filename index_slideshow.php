@@ -4,9 +4,10 @@
       <?php
       // get restaurant images
       $stmt = $db->prepare(
-        'SELECT *
+        'SELECT url, Image.description, Restaurant.id
         FROM Image, Restaurant
         WHERE Image.restaurant = Restaurant.id
+        GROUP BY Image.restaurant
         ORDER BY Restaurant.id DESC LIMIT 5');
       // bind, execute and fetch
       $stmt->execute();
@@ -15,7 +16,7 @@
       while ($img = $stmt->fetch()) {
         ?>
         <div class="img-wrap">
-          <img class="img-slide" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>">
+          <a href="restaurantProfile.php?id=<?=$img['id']?>"><img class="img-slide" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>"></a>
         </div>
       <?php
         $nImg++;
@@ -34,11 +35,11 @@
       </div>
 
       <div class="prev">
-      	&#10096;
+        <a>&#10096;</a>
       </div>
 
       <div class="next">
-        &#10097;
+        <a>&#10097;</a>
       </div>
 
 
