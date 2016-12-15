@@ -65,29 +65,13 @@
 
       </div>
 
-      <div class="user-results">
-
-        <h1>Users</h1>
-        <ul>
-          <?php
-          while ($row = $users->fetch()) {
-            $matched = preg_match('/.*' . $search . '.*/i', $row['name'], $matches);
-            if ($matched) {
-              ?>
-              <li>
-                  <a href="profile.php?id=<?= $row['id']?>"><?= $row['name'] ?></a>
-              </li>
-            <?php
-            }
-          } ?>
-        </ul>
-
-      </div>
-
     </section>
 
       <div class="restaurant-display">
         <div class="restaurant-name">
+
+        </div>
+        <div class="restaurant-img">
 
         </div>
         <div class="restaurant-score">
@@ -98,15 +82,6 @@
         </div>
         <div class="restaurant-loc">
 
-        </div>
-      </div>
-
-      <div class="user-display">
-        <div class="user-name">
-          NOME123
-        </div>
-        <div class="user-pic">
-          PICTURE HERE
         </div>
       </div>
 
