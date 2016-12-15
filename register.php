@@ -14,6 +14,7 @@
 <body>
 
     <?php
+    ob_start(); // This turns on PHP's output buffering feature
     session_start();
     include_once(dirname(__FILE__) . "/database/connection.php");
     include_once(dirname(__FILE__) . "/utilities/utils.php");
@@ -34,6 +35,7 @@
 
             if(isset($_POST['submit'])){
                 $username = trim($_POST['username']); //tira espacos
+                $real_name = trim($_POST['real_name']); //tira espacos
                 $password = $_POST['password'];
                 $repeat_password = $_POST['repeat_password'];
                 $location_id = $_POST['location'];
@@ -52,13 +54,17 @@
                 if($usernameTaken == true){
                     $error .= 'Username is already taken. <p></p>';
                 }
+                //real name tem caracteres estranhos
+                $realNameNoSpace = str_replace(' ', '', $real_name);
+                if (!ctype_alpha($realNameNoSpace)) { //se tiver algo mais que letras ou nums
+                    $error .= 'Please type your real name with only letters and spaces. <p></p>';
+                }
                 //passwords diferentes
                 if($password != $repeat_password){
                     $error .= 'Passwords don\'t match. <p></p>';
                 }
                 //password nao esta no formato
                 preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}$/', $password, $matches);
-                print_r($matches, true);
                 if(empty($matches)){
                     $error .= 'Password must contain upper and lower case letters, a number, and be at least 4 characters long <p></p>';
                 }
@@ -76,17 +82,22 @@
 
         <!-- form de registo -->
         <form id="register_form" action="register.php" method="POST">
-            <label> Username:
+            <label> Username (only letters and numbers):
                 <p></p>
                 <input type="text" name="username" placeholder="Type username" required>
             </label>
             <p></p>
-            <label> Birthday:
+            <label> Name (only letters and spaces):
                 <p></p>
-                <input id="birthday" type="date" name="birthday" max="14-12-2016" required>
+                <input type="text" name="real_name" placeholder="Type your name" required>
             </label>
             <p></p>
-            <label> Password (longer than 4 characters; contain a digit, upper and lower case letters):
+            <label> Birthday:
+                <p></p>
+                <input id="birthday" type="date" name="birthday" max="14-12-2016">
+            </label>
+            <p></p>
+            <label> Password (longer than 4 characters; contains a digit, upper and lower case letters):
                 <p></p>
                 <input type="password" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}$" placeholder="Type password" required>
             </label>
@@ -136,6 +147,10 @@
             if($error == ''){ //nao ha erros
 
                 save_user();
+
+
+                                $loginpage='/login_page.php';
+                                header('Location: ' . $loginpage);
                 ?>
                 <script>
                     document.getElementById("form_error").innerHTML = "You are now registered!";
@@ -144,7 +159,7 @@
 
                 //include_once(dirname(__FILE__) . "/database/action_login.php");
                 // redirect?
-                //header('Location: './index.php);
+
             } else{ //display dos erros
                 ?>
 
