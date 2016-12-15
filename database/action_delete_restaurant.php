@@ -10,7 +10,7 @@
 
       deleteRestaurant($rest_id);
 
-      $referer = '../my_restaurants.php';
+     $referer = '../my_restaurants.php';
 
       header('Location: ' . $referer);
 ?>

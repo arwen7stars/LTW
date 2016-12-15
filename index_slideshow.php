@@ -1,18 +1,48 @@
 <br>
-<div class="restaurants">
-	<center>
-		<b>EAT&AVAIL IS YOUR GO-TO RESTAURANT REVIEWING SITE</b>
-		<br><br>
-		SIGN UP NOW
-	</center>
+	<div class="img-gallery-wrap">
 
-	<ul>
-		<li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</li>
-		<li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</li>
-		<li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</li>
-		<li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.</li>
-	</ul>
+      <?php
+      // get restaurant images
+      $stmt = $db->prepare(
+        'SELECT *
+        FROM Image, Restaurant
+        WHERE Image.restaurant = Restaurant.id
+        ORDER BY Restaurant.id DESC LIMIT 5');
+      // bind, execute and fetch
+      $stmt->execute();
+      // number of images found
+      $nImg = 0;
+      while ($img = $stmt->fetch()) {
+        ?>
+        <div class="img-wrap">
+          <img class="img-slide" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>">
+        </div>
+      <?php
+        $nImg++;
+      } ?>
 
-</div>
+      <div class="dot-wrap">
+
+        <?php
+        // create dots
+        for ($i = 0; $i < $nImg; $i++) {
+          ?>
+          <span class="dot"></span>
+        <?php
+        } ?>
+
+      </div>
+
+      <div class="prev">
+        <a>&#10096;</a>
+      </div>
+
+      <div class="next">
+        <a>&#10097;</a>
+      </div>
+
+
+    </div>
+
 
 <?php include_once("recentReviews.php"); ?>

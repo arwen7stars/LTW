@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="stylesheets/global-style.css">
     <link rel="stylesheet" href="stylesheets/header.css">
     <link rel="stylesheet" href="stylesheets/footer.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 	</head>
 

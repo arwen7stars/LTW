@@ -1,33 +1,74 @@
-.restaurantProfile {
-  position: relative;
+#restaurantProfile h1, h2 {
+  text-align: center;
 }
 
-.header-wrap {
-  width: 70%;
-  margin: 0 auto; /* center */
+.restInfo-wrap {
+    width: 45%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0rem 1rem 1rem;
+    float: left;
+    margin-left: 5%;
+    text-align: justify;
 }
 
-.left-side {
-  position: absolute;
-  top: 5%;
-  left: 0;
+.restInfo-wrap li:before {
+    content: "⇨";
+    padding-right: 10px;
+    color: #7e472d;
 }
 
-.left-side-menu-links a {
-  text-decoration: none;
-}
-
-.description-wrap {
-  width: 70%;
-  /* center */
-  margin: 0 auto;
+.restInfo-wrap li{
+  list-style: none;
+  margin: 0px;
+  text-align: left;
 }
 
 .recentReview-wrap {
-  width: 14.5%;       /* 100% - description-wrap width - 0.5 (as long as description-wrap is centered ) */
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  height: 100%;
-  overflow-y: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px black;
+  border-color: #7E472D;
+  border-style: solid;
+  padding: 1rem;
+  width: 30%;
+  position: relative;
+  float: right;
+  margin-right: 5%;
+}
+
+.writeReview-wrap{
+  margin: 10px;
+  padding: 1rem;
+  float:left;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+#restaurantProfile .labelClass {
+    display:inline-block;
+    width: 5rem;
+}
+
+#restaurantProfile input[type=text], input[type=password], input[type=number] {
+    padding: 0.3rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #7E472D;
+    box-sizing: border-box;
+}
+
+#restaurantProfile textarea {
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #7E472D;
+}
+
+#restaurantProfile .button2{
+    padding: 0.5rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#restaurantProfile h2{
+  text-align: left;
 }

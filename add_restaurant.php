@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="stylesheets/global-style.css">
     <link rel="stylesheet" href="stylesheets/header.css">
     <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/settings.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 	</head>
 
@@ -19,42 +21,36 @@
   include_once(dirname(__FILE__) . "/includes/header.php");
 ?>
 
-
+<h1>Add Restaurant</h1>
   <form action="database/action_add_restaurant.php" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="idOwner" value="1">
+      <div class="settings">
+      <p><label class="labelClass">Name: </label><input type="text" name="name" required="required"></p>
 
-  	<br>
-      <label>Name: </label> <input type="text" name="name" required="required">
-      <br><br>
-      <label>Description: </label><textarea name="description" required="required" rows="3" cols="30"></textarea>
-  	<br><br>
-      <label>Location: </label> <input type="text" name="location" required="required">
+      <p><label class="labelClass">Description: </label><textarea name="description" required="required" rows="5" cols="40"></textarea></p>
 
-  	<br><br>
-      <label>Image: </label> <input type="file" name="image"><br>
-      <label>Image description: </label><input type="text" name="image_title">
+      <p><label class="labelClass">Location: </label><input type="text" name="location" required="required"></p>
 
-      <br><br>
-      <label>Price: </label>
+      <p><label class="labelClass">Image: </label><input type="file" name="image"><br>
+      <label class="labelClass">Image description: </label><input type="text" name="image_title"></p>
+
+      <p><label class="labelClass">Price: </label>
 
       <select name="price">
-<?php
+      <?php
     $priceRange= $db->prepare(
         'SELECT type, id
         FROM PriceRange');
         $priceRange->execute();
 
     while($row = $priceRange->fetch()) { ?>
+    <option value=<?php echo $row['id'] ?> > <?php echo $row['type'] ?> </option>
+    <?php }?>
+    </select></p>
 
-        <option value=<?php echo $row['id'] ?> > <?php echo $row['type'] ?> </option>
+      </div>
 
-<?php } ?>
-      </select>
-
-      <br><br>
-      <input type="submit" value="Add">
+      <p><input type="submit" value="Submit" class="button2"></p>
   </form>
-
 <?php
   include_once(dirname(__FILE__) . "/includes/footer.php");
 ?>

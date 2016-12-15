@@ -9,7 +9,7 @@
     $rest_id = $_GET['id'];
 
     if(!empty($_POST["name"])){
-        updateName($rest_id, $_POST["name"]);
+        updateNameRestaurant($rest_id, $_POST["name"]);
     }
 
     if(!empty($_POST['description'])){

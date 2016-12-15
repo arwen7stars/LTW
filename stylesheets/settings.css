@@ -1,0 +1,64 @@
+h1{
+    text-align: center;
+}
+
+.labelClass {
+    display:inline-block;
+    width: 10rem;
+}
+
+input[type=text], input[type=password] {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #7E472D;
+    box-sizing: border-box;
+}
+
+.settings{
+    margin: 20px;
+    padding: 0rem 1rem;
+    border: 1px solid #7E472D;
+    box-shadow: 0 0 10px black;
+    margin-right: 10%;
+    margin-left:10%;
+}
+
+.settings li:before {
+    content: "⇨";
+    padding-right: 10px;
+    color: #7e472d;
+}
+
+.settings li{
+  list-style: none;
+  margin: 0px;
+  text-align: left;
+}
+
+.button2{
+    padding: 0.5rem 1.5rem;
+    text-align: center;
+    margin:0 auto;
+    display:block;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+select
+{
+    padding: 0.3rem 0.6rem;
+    border: 1px solid #7E472D;
+    border-radius: 5px;
+}
+
+input[type="date"]{
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #7E472D;
+    border-radius: 5px;
+}
+
+textarea {
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #7E472D;    
+}

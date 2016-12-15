@@ -8,6 +8,16 @@
     return $stmt->fetch() !== false;
   }
 
+  function getLoginInfo($id) {
+	global $db;
+
+    $stmt = $db->prepare('SELECT * FROM Login WHERE id=:id');
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+
+    return $stmt->fetch();  	
+  }
+
   function getLoginID($username) {
     global $db;
 
@@ -89,6 +99,20 @@
 		$stmt->bindParam(':id', $id);
 		$stmt->execute();
     }
+
+    function updateName($id, $name) {
+    global $db;
+
+    include_once(dirname(__FILE__) . '/location_database.php');
+    
+    $stmt = $db->prepare('UPDATE User
+	SET name=:name
+	WHERE id=:id');
+
+	$stmt->bindParam(':name', $name);
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+  }
 
     function updateUserLocation($id, $location) {
     global $db;

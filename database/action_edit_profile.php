@@ -4,25 +4,16 @@
     include_once(dirname(__FILE__) . '/connection.php');
     include_once(dirname(__FILE__) . '/users_database.php');
     include_once(dirname(__FILE__) . '/images_database.php');
-    include_once(dirname(__FILE__) . '/../constants.php');
-
+ 
     $id = getLoginID($_SESSION['username']);
 
-    if(isset($_POST['owner']))
-   		$_SESSION[$OWNER] = true;
-   	else $_SESSION[$OWNER] = false;
-
-   	if(isset($_POST['reviewer']))
-   		$_SESSION[$REVIEWER] = true;
-   	else $_SESSION[$REVIEWER] = false;   		
-
-    if($_SESSION[$OWNER]){
+    if(isset($_POST['owner'])){
     	setOwnerStatus($id);
     } else{
     	deleteOwnerStatus($id);
     }
 
-    if($_SESSION[$REVIEWER]){
+    if(isset($_POST['reviewer'])){
     	setReviewerStatus($id);
     } else{
     	deleteReviewerStatus($id);
@@ -39,12 +30,18 @@
 		   // TODO INFORM USER THAT PASSWORDS DON'T MATCH
 		}
     }
+
+    if(!empty($_POST['name'])){
+		updateName($id, $_POST['name']);
+	}
+
 	if(!empty($_POST['username'])){
 		if(is_registered($_POST['username'])){
 			// TODO INFORM USER THAT THE GIVEN USERNAME IS ALREADY IN USE
+		} else{
+			updateUsername($id, $_POST['username']);
+			$_SESSION['username'] = $_POST['username'];
 		}
-		updateUsername($id, $_POST['username']);
-		$_SESSION['username'] = $_POST['username'];
 	}
 
 	if( $_POST['location'] != -1 ){
@@ -70,7 +67,7 @@
 
 	}
     
-    $referer = '../profile.php';
+    $referer = '../profile.php?id=' . $id;
 
     header('Location: ' . $referer);
 ?>

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="stylesheets/global-style.css">
     <link rel="stylesheet" href="stylesheets/header.css">
     <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/settings.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 	</head>
 
@@ -24,22 +26,22 @@
   $rest_info = getRestaurant($rest_id);
 ?>
 
+<h1>Edit <?=$rest_info['name']?></h1>
+
+<div class="settings">
 <h2>General Info</h2>
   <form action="database/action_edit_restaurant.php?id=<?= $rest_id ?>" method="post"  enctype="multipart/form-data">
       <input type="hidden" name="idOwner" value="1">
 
   	
-      <p><label>Name: </label> <input type="text" name="name" value= "<?= $rest_info['name'] ?>" ></p>
+      <p><label class="labelClass">Name: </label><input type="text" name="name" value= "<?= $rest_info['name'] ?>" ></p>
 
-      <p><label>Description: </label><textarea name="description" rows="5" cols="50"><?= $rest_info['description'] ?></textarea></p>
+      <p><label class="labelClass">Description: </label><textarea name="description" rows="5" cols="40"><?= $rest_info['description'] ?></textarea></p>
 
-      <p><label>Location: </label> <input type="text" name="location"value= "<?= $rest_info['address'] ?>" ></p>
+      <p><label class="labelClass">Location: </label><input type="text" name="location"value= "<?= $rest_info['address'] ?>" ></p>
 
-      <p><label>Price: </label>
-
-
-      <select name="price">
-<?php
+      <p><label class="labelClass">Price: </label><select name="price">
+      <?php
     $priceRange= $db->prepare('SELECT * FROM PriceRange');
     $priceRange->execute();
 
@@ -53,7 +55,9 @@
   <?php }
 } ?>
       </select></p>
+</div>
 
+<div class="settings">
 <h2>Images</h2>
   <?php
       $stmt = getImagesRestaurant($rest_id);
@@ -65,9 +69,11 @@
         <img src="resources/remove.png"></a></li>
 
       <?php } ?>
-      <p><label>Add image: </label> <input type="file" name="image"><br>
-      <label>Image description: </label><input type="text" name="image_title" autocomplete=off></p>
+      <p><label class="labelClass">Add image: </label><input type="file" name="image"><br>
+      <label class="labelClass">Image description: </label><input type="text" name="image_title" autocomplete=off></p>
+</div>
 
+<div class="settings">
 <h2>Owners</h2>
 <?php
       $stmt = getOwnersRestaurant($rest_id);
@@ -82,7 +88,7 @@
 
 <?php } ?>
   
-      <p>Add Owner: </label> 
+      <p><label class="labelClass">Add Owner: </label> 
       <select name="owner">
           <option value="-1" selected="selected"> -- select an option -- </option>
 <?php
@@ -91,10 +97,10 @@ while ($row = $stmt->fetch()) { ?>
   <option value=<?php echo $row['id'] ?>> <?php echo $row['name'] ?> </option>
 <?php }
 ?>
-      </select>
-      <p><input type="submit" value="Save All"></p>
+      </select></p>
+</div>
+      <p><input type="submit" value="Save All" class="button2"></p>
 </form>
-
 
 <?php
   include_once(dirname(__FILE__) . "/includes/footer.php");

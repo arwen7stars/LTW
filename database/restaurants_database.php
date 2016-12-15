@@ -1,4 +1,16 @@
 <?php
+	
+	function getAllRestaurants(){
+    global $db;
+
+    $stmt = $db->prepare(
+    'SELECT * FROM Restaurant
+    ORDER BY name');
+
+    $stmt->execute();
+
+    return $stmt;		
+	}
     function getRecentRestaurants($id) {
     global $db;
 
@@ -38,7 +50,7 @@
 
     // prepare query
     $stmt = $db->prepare(
-    'SELECT *
+    'SELECT id, name
     FROM RestaurantOwners, Restaurant
     WHERE RestaurantOwners.owner = :userId
     AND RestaurantOwners.restaurant = Restaurant.id');
@@ -127,7 +139,6 @@
     function getOwnersRestaurant($id) {
         global $db;
 
-        // get restaurant images
         $stmt = $db->prepare(
         'SELECT Owner.id
         FROM RestaurantOwners, Owner
@@ -140,6 +151,23 @@
 
         return $stmt;
 
+    }
+
+      function getRestaurantWithReviews($restaurantId){
+    	global $db;
+
+		$stmt = $db->prepare(
+			'SELECT name, description, address, AVG(Review.score) AS restScore
+			FROM Restaurant, Review
+			WHERE Restaurant.id = :restaurantId
+			AND Review.restaurant = Restaurant.id
+			GROUP BY name
+			ORDER BY restScore DESC LIMIT 10');
+		  // bind, execute and fetch
+		  $stmt->bindParam(':restaurantId', $restaurantId);
+		  $stmt->execute();
+
+		  return $stmt->fetch();    	
     }
 
     function registerRestaurant($name, $description, $location, $priceRange) {
@@ -190,7 +218,7 @@
         }
      }
 
-     function updateName($id, $name) {
+     function updateNameRestaurant($id, $name) {
     	global $db;
 
     	$stmt = $db->prepare('UPDATE Restaurant
