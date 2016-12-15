@@ -14,7 +14,6 @@
 <body>
 
   <?php
-    /* TODO porque raio e que nao posso retirar connection e deixar ficar session start? */
     session_start();
     include_once(dirname(__FILE__) . "/database/connection.php");
     include_once(dirname(__FILE__) . "/includes/header.php");

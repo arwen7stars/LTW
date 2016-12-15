@@ -54,17 +54,18 @@
     else if(isset($_SESSION[$REVIEWER]) && ($_SESSION[$REVIEWER] == true))
         echo 'Reviewer';
     else echo 'Normal user';
-     
+
     ?></p>
 
     <h2><?php echo $_SESSION['username'];?></h2>
 
     <ul>
     <li>Location: <?php echo $location_info['name'];?></li>
-   
+
 
     <?php if(!($user_info['dataOfBirth'] == null)){ ?>
         <li>Date of birth: <?php echo $user_info['dataOfBirth'];?></li>
+
     <?php } ?>
 
     <li>Joined: <?php echo $user_info['dateJoined'];?></li>
@@ -72,7 +73,7 @@
 
     <?php if(isReviewer($user_info['id'])) { ?>
     <div id="recent_reviews">
-    
+
         <h2>Recent Reviews</h2>
 <?php
         $stmt = getRecentReviews($user_info['id']);
@@ -80,7 +81,7 @@
         while ($row = $stmt->fetch()) { ?>
 
         <section>
-          <h3><?= $row['title']?> - 
+          <h3><?= $row['title']?> -
           <?= $row['tldr']?></h3>
           <p>(<?= $row['score']?>/10) for <i><?= $row['name'] ?></i></p>
         </section>
@@ -95,13 +96,13 @@
         <h2>Recent Restaurants</h2>
 <?php
         $stmt = getRecentRestaurants($user_info['id']);
-        while ($row = $stmt->fetch()) { 
+        while ($row = $stmt->fetch()) {
             $priceRange = getPriceRange($row['priceRange']);
         ?>
 
         <section>
           <h3><?= $row['name']?> </h1>
-          <p><?= $row['address']?> - <?= $priceRange->fetch()['type'] ?></p>          
+          <p><?= $row['address']?> - <?= $priceRange->fetch()['type'] ?></p>
         </section>
 <?php } ?>
     </div>

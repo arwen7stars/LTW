@@ -24,7 +24,6 @@
       <h3>
           Register
       </h3>
-      <!-- TODO resolefr echo -->
       <form action="save_user.php" method="POST">
           <?php
           if(isset($error))
