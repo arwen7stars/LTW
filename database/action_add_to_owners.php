@@ -12,7 +12,7 @@
 
     setRestaurantOwner($rest_id, $user_id);
 
-    $referer = '../restaurantProfile.php?id=' . $_POST['id'];
+    $referer = '../restaurantProfile.php?id=' . $_GET['id'];
 
     header('Location: ' . $referer);
 ?>

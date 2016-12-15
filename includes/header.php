@@ -15,8 +15,8 @@
 			include_once(dirname(__FILE__) . '/../restaurants_dropdown.php');
 		?>
 
-    			<li><a href="review.php">Reviewers</a></li>
-						<li><form action="search.php" method="get"><input type="search" placeholder="Search..." required="required" name="search"><input type="submit" value="Search"></form></li>
+    			
+				<li><form action="search.php" method="get"><input type="search" placeholder="Search..." required="required" name="search"><input type="submit" value="Search"></form></li>
 
     			<?php
 			if (isset($_SESSION['username']))

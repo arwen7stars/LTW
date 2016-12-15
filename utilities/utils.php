@@ -33,7 +33,11 @@ function getNextId($db) {
     FROM Event
     UNION
     SELECT id
-    FROM PriceRange );');
+    FROM PriceRange 
+    UNION
+    SELECT id
+    FROM ReplyReviews 
+    );');
 
   // fetch max id
   $stmt->execute();
