@@ -1,30 +1,27 @@
 <?php
-    //if (!isset($_POST['id'])) die('No id')
 
-    echo $_POST['username'], " ",$_POST['location']," ", $_POST['password'], " ";
-    if (!isset($_POST['username']) || trim($_POST['username']) == ''){
-        $error = "Username is mandatory";
+function save_user(){
+
+    global $db;
+    $id = getNextId($db);
+
+    //guardar em users
+    $stmt = $db->prepare('INSERT INTO User (id, name, dataOfBirth, dateJoined) VALUES (?,?,?,?)');
+    try{
+        $stmt->execute(array($id, $_POST['real_name'], $_POST['birthday'], date('Y-m-d')));
+    } catch(PDOException $e) {
+        die($e->getMessage());
     }
 
-    $findUsername = $db->prepare('SELECT * FROM User WHERE (name = ?)');
-    $findUsername->execute(array($_POST['username']));
-    $foundUsername = $findUsername->fetchAll();
+    //guardar em login
+    $hashpass = hash('sha256',  $_POST['password']);
 
-    if(isset($foundUsername)){
-        $error = "Username in use!";
-        header("Location: ./register.php");
-        die();
-    } else echo 'new user!';
+    $stmt = $db->prepare('INSERT INTO Login (id, username, password) VALUES (?,?,?)');
+    try{
+        $stmt->execute(array($id, $_POST['username'], $hashpass));
+    } catch(PDOException $e) {
+        die($e->getMessage());
+    }
 
-      $id = getNextId($db);
-      $stmt = $db->prepare('INSERT INTO User (id, name, dataOfBirth, dateJoined) VALUES (?,?,?,?)');
-      try{
-          $stmt->execute(array($id, $_POST['username'], date('Y-m-d'), date('Y-m-d')));
-          return $stmt->fetch();
-      } catch(PDOException $e) {
-          die($e->getMessage());
-      }
-      header("Location: ./index.php");
-      die();
- // }
- ?>
+}
+?>

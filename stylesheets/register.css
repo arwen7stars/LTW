@@ -1,0 +1,37 @@
+h3{
+    text-align:center;
+}
+
+#form_error{
+    width:40%;
+    margin: 0px auto;
+    color:red;
+}
+
+#register_form{
+    width: 40%;
+    margin: 0px auto;
+    margin-top:1.5rem;
+    padding: 1rem;
+    margin-bottom: 2.5rem;
+    border-style: solid;
+    border-color: #7E472D;
+    border-width: 0.15rem;
+    box-shadow: 0.5rem 0.5rem 0.25rem #888888;
+    outline: 0.2rem solid #d8c7c7;
+}
+
+#register_form input[type=text], input[type=password], input[type=date], select {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#register_form input[type=submit] {
+    width: 100%;
+    padding: 0.9rem 0rem;
+    font-size: 1rem;
+}

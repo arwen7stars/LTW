@@ -4,7 +4,7 @@
     $password_hash = hash('sha256', $password);
 
     $stmt = $db->prepare('SELECT * FROM Login WHERE username=? AND password=?');
-	$stmt->execute(array($username, $password));
+	$stmt->execute(array($username, $password_hash));
     return $stmt->fetch() !== false;
   }
 
@@ -15,7 +15,7 @@
 	$stmt->bindParam(':id', $id);
 	$stmt->execute();
 
-    return $stmt->fetch();  	
+    return $stmt->fetch();
   }
 
   function getLoginID($username) {
@@ -40,14 +40,18 @@
 	return $stmt->fetch();
   }
 
-  function is_registered($username) {
-  	global $db;
-	$stmt = $db->prepare('SELECT * FROM Login WHERE username=:username');
-	$stmt->bindParam(':username', $username);
-	$stmt->execute();
-	return $stmt->fetch() !== false;
+  function is_registered($username) { //retorna true se esta registado
+      global $db;
+      $findUsername = $db->prepare('SELECT * FROM User WHERE (name = ?)');
+      $findUsername->execute(array($_POST['username']));
+      $foundUsername = $findUsername->fetchAll();
+      if(empty($foundUsername)){
+          return false; //nao esta registado
+      } else{
+          return true; //esta registado
+      }
   }
-  
+
    function isOwner($id) {
     global $db;
 
@@ -104,7 +108,7 @@
     global $db;
 
     include_once(dirname(__FILE__) . '/location_database.php');
-    
+
     $stmt = $db->prepare('UPDATE User
 	SET name=:name
 	WHERE id=:id');
@@ -118,7 +122,7 @@
     global $db;
 
     include_once(dirname(__FILE__) . '/location_database.php');
-    
+
     $stmt = $db->prepare('UPDATE User
 	SET residenceArea=:location_id
 	WHERE id=:id');
@@ -130,7 +134,7 @@
 
    function updateUserBirthday($id, $data) {
     global $db;
-    
+
     $stmt = $db->prepare('UPDATE User
 	SET dataOfBirth=:date
 	WHERE id=:id');
@@ -142,7 +146,7 @@
 
    function deleteOwnerStatus($id) {
     global $db;
-    
+
     $stmt = $db->prepare('DELETE FROM Owner
 	WHERE id=:id');
 
@@ -158,7 +162,7 @@
 
    function deleteReviewerStatus($id) {
     global $db;
-    
+
     $stmt = $db->prepare('DELETE FROM Reviewer
 	WHERE id=:id');
 
@@ -196,5 +200,3 @@
 	}
    }
 ?>
-
-
