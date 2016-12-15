@@ -1,6 +1,0 @@
-organizar isto como se fosse classes em c++, com includes no topo etc (classe de reviews que contem funçoes de get reviews, etc)
-mover ficheiros para dentro de pastas adequadas (restaurant, reviews, user, etc)
-rename de ficheiros adequadamente
-rename de pasta includes
-mudar nome de site. & triggering
-check TODO list
