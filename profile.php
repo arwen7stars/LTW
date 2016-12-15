@@ -40,9 +40,11 @@
       $location_id = $user_info['residenceArea'];
       $location_info = getLocationInfo($location_id);
 
-      if($image_info['url'] == null){
+      $image = $image_info['url'];
+
+      if(is_null($image)){
           $url = $DEFAULT_URL;
-      } else $url = $image_info['url'];
+      } else $url = $image;
 
     ?>
 

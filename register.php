@@ -150,7 +150,7 @@
                 save_user();
 
 
-                                $loginpage='/login_page.php';
+                                $loginpage='login_page.php';
                                 header('Location: ' . $loginpage);
                 ?>
                 <script>
