@@ -127,7 +127,7 @@ if(isOwner($user_id) && !isUserOwner($user_id, $restaurantId)){?>
 
 // prepare query
 $stmt = $db->prepare(
-'SELECT User.id, title, score, tldr, body, name
+'SELECT Review.id as review_id, User.id as user_id, title, score, tldr, body, name
 FROM Review, Reviewer, User
 WHERE Review.restaurant = :restaurantId
 AND Review.reviewer = Reviewer.id
@@ -141,7 +141,18 @@ while ($row = $stmt->fetch()) { ?>
 <h3><?= $row['title']?></h3>
 <p><?= $row['tldr']?> (<?= $row['score']?>/10)</p>
 <p>Written by 
-<a href="profile.php?id=<?=$row['id']?>"><?= $row['name'] ?></p></a>
+<a href="profile.php?id=<?=$row['user_id']?>"><?= $row['name'] ?></p></a>
+<br>
+
+<?php if(isset($_SESSION['username'])){
+$user_id = getLoginID($_SESSION['username']);
+if(isOwner($user_id) && isUserOwner($user_id, $restaurantId)){?>
+
+
+<a href="replyReview.php?review_id=<?=$row['review_id']?>"><b>Reply</b></a>
+
+
+<?php }}?>
 <hr>
 <?php } ?>
 <a href="reviewsRestaurant.php?id=<?=$restaurantId?>">Read more...</a>

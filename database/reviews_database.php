@@ -1,4 +1,20 @@
 <?php
+    function getReview($id) {
+    global $db;
+
+    // prepare query
+    $stmt = $db->prepare(
+    'SELECT *
+    FROM Review
+    WHERE id=:id');
+
+    // bind and execute
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
+    return $stmt->fetch();       
+    }
+
     function getRecentReviews($id) {
     global $db;
 
@@ -31,6 +47,24 @@
 
     // bind and execute
     $stmt->bindParam(':userId', $id);
+    $stmt->execute();
+
+    return $stmt;
+    }
+
+    function getRepliesReview($review_id, $user_id) {
+    global $db;
+
+    // prepare query
+    $stmt = $db->prepare(
+    'SELECT *
+    FROM ReplyReviews
+    WHERE ReplyReviews.review = :id
+    AND ReplyReviews.commenter = :user_id');
+
+    // bind and execute
+    $stmt->bindParam(':id', $review_id);
+    $stmt->bindParam(':user_id', $user_id);    
     $stmt->execute();
 
     return $stmt;

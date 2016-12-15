@@ -13,3 +13,19 @@
     padding-right: 2rem;
     text-align: justify
 }
+
+#replyIntro{
+    padding: 1rem;
+}
+
+#replyIntro textarea {
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #7E472D;
+}
+
+#replyIntro .button2{
+    padding: 0.5rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
