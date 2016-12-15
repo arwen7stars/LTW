@@ -42,13 +42,13 @@
   $users->execute();
 
   ?>
+  
+<h1><center>Restaurants</center></h1>
 <section class="main-body">
 
     <section class="search-results">
 
       <div class="restaurant-results">
-
-        <h1>Restaurants</h1>
         <ul>
           <?php
           while ($row = $restaurants->fetch()) {
@@ -77,12 +77,7 @@
         <div class="restaurant-score">
 
         </div>
-        <div class="restaurant-desc">
-
-        </div>
-        <div class="restaurant-loc">
-
-        </div>
+       
       </div>
 
 </section>

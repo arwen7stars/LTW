@@ -15,13 +15,10 @@
 			include_once(dirname(__FILE__) . '/../restaurants_dropdown.php');
 		?>
 
-    			
-				<li><form action="search.php" method="get"><input type="search" placeholder="Search..." required="required" name="search"><input type="submit" value="Search"></form></li>
-
     			<?php
 			if (isset($_SESSION['username']))
 				include_once(dirname(__FILE__) . '/../user_dropdown.php');
 		?>
-  		</ul>
+  		<form action="search.php" method="get"><input type="search" placeholder="Search..." required="required" name="search" class="search"><input type="submit" value=""></form></ul>
 		</nav>
 </div>

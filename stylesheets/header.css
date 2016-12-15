@@ -20,6 +20,32 @@
   text-align: right;
 }
 
+.menu form {
+    margin-top: 0.6rem;
+    position:absolute;
+    display:inline;
+	float: right;
+	padding: 0px 10px;
+}
+
+.search {
+  padding: 0.4rem 0.4rem;
+  border-radius: 0.3rem;
+  border: 1px solid #e4b791;
+}
+
+.menu form input[type=submit] {
+  position:absolute;
+  background-image: url('../resources/search.png');
+  background-size: 100% 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.7rem;
+  border: 1px solid #fff;
+  background-color: #fff;
+  margin-left: 0.3rem;
+  margin-top: -1px;
+}
+
 /* --- MENU CUSTOMIZATION --- */
 
 /* The clearfix will stop an annoying bug where,

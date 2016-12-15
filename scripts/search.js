@@ -27,14 +27,13 @@ var restaurantOnMouseEnter = function(event) {
     data: {"id": restaurantId}
 	}).done(function(data) {
     if (data[1].score != null) {
-      restaurantName.html(data[0].name + '<br />Score: ' + data[1].score + '/10');
+      restaurantName.html(data[0].name + '<br />Score: ' + Math.round(data[1].score*100)/100 + '/10');
     } else {
       restaurantName.html(data[0].name + '<br />No score available yet!');
     }
     if (data[2].url != null) {
       restaurantImg.html('<img src="' + data[2].url + '">');
     }
-    restaurantDesc.html(data[0].desc);
 	});
 };
 
