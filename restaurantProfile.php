@@ -30,9 +30,10 @@
 
 
   <!-- RESTAURANT INFO -->
-<?php
+<?php  
 // get restaurant id
 $restaurantId = $_GET['id'];
+
 // will only get restaurant info
 $restaurantInfo = getRestaurant($restaurantId);
 ?>
@@ -104,24 +105,26 @@ while ($row = $stmt->fetch()){
 <?php } ?>
 
 <?php
-
 if(isset($_SESSION['username'])){
 $user_id = getLoginID($_SESSION['username']);
-
 if(isOwner($user_id) && !isUserOwner($user_id, $restaurantId)){?>
   <form action="database/action_add_to_owners.php?id=<?=$restaurantId?>" method="post">
         <p><input type="submit" value="Add to restaurants!" class="button2"></p>
 </form>
-<?php } ?>
+<?php }
+} ?>
 
 
 </div>
+
+
 
 <div class="recentReview-wrap">
 
 <h2>Recent Reviews</h2>
 
-<?php
+<?php 
+
 // prepare query
 $stmt = $db->prepare(
 'SELECT User.id, title, score, tldr, body, name
@@ -137,7 +140,7 @@ while ($row = $stmt->fetch()) { ?>
 
 <h3><?= $row['title']?></h3>
 <p><?= $row['tldr']?> (<?= $row['score']?>/10)</p>
-<p>Written by
+<p>Written by 
 <a href="profile.php?id=<?=$row['id']?>"><?= $row['name'] ?></p></a>
 <hr>
 <?php } ?>
@@ -147,6 +150,10 @@ while ($row = $stmt->fetch()) { ?>
 <div class="writeReview-wrap">
 
 <?php
+
+if(isset($_SESSION['username'])){
+$user_id = getLoginID($_SESSION['username']);
+
 if(isReviewer($user_id)){?>
 
 <p><h2>Write a review</h2></p>
