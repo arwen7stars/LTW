@@ -21,16 +21,16 @@
   include_once(dirname(__FILE__) . "/includes/header.php");
   include_once(dirname(__FILE__) . '/database/users_database.php');
 
-  if(isset($_SESSION[$OWNER]) && ($_SESSION[$OWNER] == true)){
+  $login_id = getLoginID($_SESSION['username']);
+  $user_info = getUserInfo($login_id);
+
+  if(isOwner($login_id)){
     $owner = true;
   } else $owner = false;
 
-  if(isset($_SESSION[$REVIEWER]) && ($_SESSION[$REVIEWER] == true)){
+  if(isReviewer($login_id)){
     $reviewer = true;
   } else $reviewer = false;
-
-  $login_id = getLoginID($_SESSION['username']);
-  $user_info = getUserInfo($login_id);
 
 ?>
 

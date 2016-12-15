@@ -4,25 +4,16 @@
     include_once(dirname(__FILE__) . '/connection.php');
     include_once(dirname(__FILE__) . '/users_database.php');
     include_once(dirname(__FILE__) . '/images_database.php');
-    include_once(dirname(__FILE__) . '/../constants.php');
-
+ 
     $id = getLoginID($_SESSION['username']);
 
-    if(isset($_POST['owner']))
-   		$_SESSION[$OWNER] = true;
-   	else $_SESSION[$OWNER] = false;
-
-   	if(isset($_POST['reviewer']))
-   		$_SESSION[$REVIEWER] = true;
-   	else $_SESSION[$REVIEWER] = false;   		
-
-    if($_SESSION[$OWNER]){
+    if(isset($_POST['owner'])){
     	setOwnerStatus($id);
     } else{
     	deleteOwnerStatus($id);
     }
 
-    if($_SESSION[$REVIEWER]){
+    if(isset($_POST['reviewer'])){
     	setReviewerStatus($id);
     } else{
     	deleteReviewerStatus($id);
@@ -76,7 +67,7 @@
 
 	}
     
-    $referer = '../profile.php';
+    $referer = '../profile.php?id=' . $id;
 
     header('Location: ' . $referer);
 ?>
