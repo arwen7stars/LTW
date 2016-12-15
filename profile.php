@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="stylesheets/global-style.css">
     <link rel="stylesheet" href="stylesheets/header.css">
     <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/profile.css">
+    <link rel="stylesheet" href="stylesheets/img-gallery.css">
+    <script type="text/javascript" src="utilities/imageSlideShow.js" defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="includes/jquery-3.1.1.min.js"></script>
 	</head>
 
 <body>
@@ -16,9 +21,10 @@
     session_start();
     include_once(dirname(__FILE__) . "/database/connection.php");
     include_once(dirname(__FILE__) . "/includes/header.php");
+    include_once(dirname(__FILE__) . "/constants.php");
   ?>
 
-  <div id="user_info">
+<div id="profile">
     <?php
       include_once(dirname(__FILE__) . '/database/users_database.php');
       include_once(dirname(__FILE__) . '/database/images_database.php');
@@ -26,19 +32,22 @@
       include_once(dirname(__FILE__) . '/database/reviews_database.php');
       include_once(dirname(__FILE__) . '/database/restaurants_database.php');
 
-      $login_id = getLoginID($_SESSION['username']);
+      $login_id = $_GET['id'];
+      $login_info = getLoginInfo($login_id);
       $user_info = getUserInfo($login_id);
       $image_id = $user_info['image'];
       $image_info = getImageInfo($image_id);
       $location_id = $user_info['residenceArea'];
       $location_info = getLocationInfo($location_id);
-
+      
       if($image_info['url'] == null){
           $url = $DEFAULT_URL;
       } else $url = $image_info['url'];
 
     ?>
 
+<div class = "user_bar">
+    <h1><?php echo $login_info['username'];?></h1>
     <img src="<?php echo $url;?>"
      alt="<?php echo $image_info['description'];?>">
 
@@ -46,68 +55,63 @@
 
     <?php
 
-    if(isset($_SESSION[$OWNER]) && ($_SESSION[$OWNER] == true)
-    && isset($_SESSION[$REVIEWER]) && ($_SESSION[$REVIEWER] == true)){
+    if(isOwner($login_id)
+    && isReviewer($login_id)){
         echo 'Owner & Reviewer';
-    } else if(isset($_SESSION[$OWNER]) && ($_SESSION[$OWNER] == true))
+    } else if(isOwner($login_id))
         echo 'Owner';
-    else if(isset($_SESSION[$REVIEWER]) && ($_SESSION[$REVIEWER] == true))
+    else if(isReviewer($login_id))
         echo 'Reviewer';
     else echo 'Normal user';
      
     ?></p>
 
-    <h2><?php echo $_SESSION['username'];?></h2>
-
     <ul>
-    <li>Location: <?php echo $location_info['name'];?></li>
-   
+      <li><b>Name:</b> <?php echo $user_info['name'];?></li>
+      <li><b>Location:</b> <?php echo $location_info['name'];?></li>
 
-    <?php if(!($user_info['dataOfBirth'] == null)){ ?>
-        <li>Date of birth: <?php echo $user_info['dataOfBirth'];?></li>
-    <?php } ?>
 
-    <li>Joined: <?php echo $user_info['dateJoined'];?></li>
+      <?php if(!($user_info['dataOfBirth'] == null)){ ?>
+          <li><b>Date of birth:</b> <?php echo $user_info['dataOfBirth'];?></li>
+      <?php } ?>
+
+      <li><b>Joined:</b> <?php echo $user_info['dateJoined'];?></li>
     </ul>
+</div>
 
     <?php if(isReviewer($user_info['id'])) { ?>
-    <div id="recent_reviews">
-    
+    <div class="reviews">
         <h2>Recent Reviews</h2>
 <?php
         $stmt = getRecentReviews($user_info['id']);
 
-        while ($row = $stmt->fetch()) { ?>
+        while ($row = $stmt->fetch()) { 
+        ?>
 
-        <section>
-          <h3><?= $row['title']?> - 
-          <?= $row['tldr']?></h3>
-          <p>(<?= $row['score']?>/10) for <i><?= $row['name'] ?></i></p>
-        </section>
+          <li><p> <b><?= $row['title']?></b> ~ 
+          <?= $row['tldr']?>
+          (<?= $row['score']?>/10 for <i><a href="restaurantProfile.php?id=<?=$row['id']?>"><?= $row['name']?></a></i>)</p></li>
 <?php } ?>
-    </div>
+  </div>
 <?php } ?>
 
 
 <?php if(isOwner($user_info['id'])) { ?>
-    <div id="recent_restaurants">
+    <div class="restaurants">
 
-        <h2>Recent Restaurants</h2>
+        <h2>Owned Restaurants</h2>
+        <ul>
 <?php
         $stmt = getRestaurantsUser($user_info['id']);
-        while ($row = $stmt->fetch()) { 
-            $priceRange = getPriceRange($row['priceRange']);
+        while ($row = $stmt->fetch()) {
         ?>
+          <li><a href="restaurantProfile.php?id=<?=$row['id']?>"><?= $row['name']?></a></li> 
 
-        <section>
-          <h3><?= $row['name']?> </h1>
-          <p><?= $row['address']?> - <?= $priceRange['type'] ?></p>          
-        </section>
 <?php } ?>
-    </div>
-<?php } ?>
-
+  </ul>
   </div>
+<?php } ?>
+
 
   <?php
   include_once(dirname(__FILE__) . "/includes/footer.php");

@@ -1,4 +1,8 @@
-.login_form {
+.sign_login_form h2{
+  text-align: center;
+}
+
+.sign_login_form {
   width: 40%;
   margin: 0px auto;
   margin-top:1.5rem;
@@ -10,7 +14,7 @@
   outline: 0.2rem solid #d8c7c7;
 }
 
-.login_form input[type=text], input[type=password] {
+.sign_login_form input[type=text], input[type=password] {
     width: 100%;
     padding: 1rem;
     margin: 1rem 0;
@@ -19,7 +23,7 @@
     box-sizing: border-box;
 }
 
-.login_form input[type=submit] {
+.sign_login_form input[type=submit] {
     width: 100%;
     padding: 0.9rem 0rem;
     font-size: 1rem;

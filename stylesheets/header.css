@@ -3,28 +3,13 @@
   background-image: url("../resources/header_background.png");
   background-repeat: no-repeat;
   background-position: right;
-  text-shadow: 1px 1px 1px #000000;
   color: #ffffff;
   padding: 20px;
 }
 
-.signup {
-  background-color: #7E472D;
-  color: #fff;
-  padding: 5px;
-  text-align: center;
-  border-style: solid;
-  border-color: #7E472D;
-  border-width: 2px;
-}
-
-.login {
-  color: #fff;
-  padding: 5px;
-  text-align: center;
-  border-style: solid;
-  border-color: #7E472D;
-  border-width: 2px;
+.website-header h1{
+  text-align: left;
+  display:block;
 }
 
 .website-header a{
@@ -51,8 +36,14 @@ it will disappear. */
   position: relative;
 }
 
+header h1 {
+  font-family: verdana, sans-serif;
+  color: #fff;
+}
+
 .menu {
   width: 100%;
+  color: #efd6b5;
 }
 
 .menu ul {

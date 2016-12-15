@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/header.css">
     <link rel="stylesheet" href="stylesheets/login.css">
     <link rel="stylesheet" href="stylesheets/footer.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 	</head>
 
@@ -22,18 +23,17 @@
    
   ?>
 
-
-
-  <div class="login_form">
+  <div class="sign_login_form">
+<h2>Login</h2>
         <form action="database/action_login.php" method="post">
 
-        <label class="login-label"><b>Username</b></label>
+        <label class="login-label">Username</label>
         <input type="text" name="username" placeholder="username" required>
 
-        <label class="login-label"><b>Password</b></label>
+        <label class="login-label">Password</label>
         <input type="password" name="password" placeholder="password" required>
 
-        <input class="signup" type="submit" value="Login">
+        <input class="button2" type="submit" value="Login">
 
         </form>
   </div>

@@ -41,4 +41,14 @@
 	$stmt->execute();
 
  }
+
+  function deleteImageRestaurant($img_id){
+	  global $db;
+
+	  $stmt = $db->prepare('DELETE FROM Image
+	  WHERE id=:img_id');
+
+	  $stmt->bindParam(':img_id', $img_id);
+	  $stmt->execute();
+     }
 ?>

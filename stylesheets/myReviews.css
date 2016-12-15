@@ -1,0 +1,15 @@
+#my_reviews h2{
+    text-align: center;
+}
+
+#my_reviews .review{
+    margin: 20px;
+    box-shadow: 0 0 10px black;
+    border-color: #7E472D;
+    border-style: solid;
+    border-width: 1px;
+    margin-right: 10%;
+    margin-left:10%;
+    padding-right: 2rem;
+    text-align: justify
+}

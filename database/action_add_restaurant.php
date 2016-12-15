@@ -9,6 +9,7 @@
       if(!isset($_POST['name']) || empty($_POST['name'])
         || !isset($_POST['description']) || empty($_POST['description']))
         die('Required attributes not given');
+      
 
       $rest_id = registerRestaurant($_POST['name'], $_POST['description'], $_POST['location'], $_POST['price']);
       $user_id = getLoginID($_SESSION['username']);
@@ -21,10 +22,15 @@
       move_uploaded_file($tmp_file, $destination);
 
       $rest_name = $_POST['name'];
-      $description = "A image of $rest_name";
 
-      $image_id = addImageRestaurant($destination, $description, $rest_id);
+      if(empty($_POST['image_title']))
+      	$description = null;
+      else $description = $_POST['image_title'];
+      
+	  $path = 'resources/' . $name_file;
+      $image_id = addImageRestaurant($path, $description, $rest_id);
+	
+	  $referer = '../my_restaurants.php'; 
 
-
-      header('Location: ../restaurantProfile.php?id=' .  $rest_id);
+      header('Location: ' . $referer);
 ?>

@@ -1,5 +1,17 @@
 <?php
-    function getRestaurantsUser($id) {
+	
+	function getAllRestaurants(){
+    global $db;
+
+    $stmt = $db->prepare(
+    'SELECT * FROM Restaurant
+    ORDER BY name');
+
+    $stmt->execute();
+
+    return $stmt;		
+	}
+    function getRecentRestaurants($id) {
     global $db;
 
     // prepare query
@@ -33,12 +45,12 @@
     return $stmt->fetch();
     }
 
-    function getRecentRestaurants($id) {
+    function getRestaurantsUser($id) {
     global $db;
 
     // prepare query
     $stmt = $db->prepare(
-    'SELECT *
+    'SELECT id, name
     FROM RestaurantOwners, Restaurant
     WHERE RestaurantOwners.owner = :userId
     AND RestaurantOwners.restaurant = Restaurant.id');
@@ -63,7 +75,7 @@
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch();
+        return $stmt;
     }
 
     function getPriceRangeId($type) {
@@ -84,15 +96,88 @@
         return $row['id'];
     }
 
+    function getImagesRestaurant($id) {
+        global $db;
+
+        // get restaurant images
+        $stmt = $db->prepare(
+        'SELECT *
+        FROM Image
+        WHERE Image.restaurant = :restaurantId');
+
+        // bind, execute and fetch
+        $stmt->bindParam(':restaurantId', $id);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    function getNonOwners($id){
+        global $db;
+
+
+        $stmt = $db->prepare(
+        'SELECT DISTINCT User.id, User.name
+        FROM RestaurantOwners, Owner, User, Restaurant
+        WHERE RestaurantOwners.restaurant = Restaurant.id
+        AND RestaurantOwners.owner = Owner.id
+        AND User.id = Owner.id
+        AND User.id NOT IN(
+        SELECT Owner.id
+        FROM RestaurantOwners, Owner
+        WHERE RestaurantOwners.restaurant = :id
+        AND RestaurantOwners.owner = Owner.id)
+        ORDER BY User.name');
+
+        // bind, execute and fetch
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    function getOwnersRestaurant($id) {
+        global $db;
+
+        $stmt = $db->prepare(
+        'SELECT Owner.id
+        FROM RestaurantOwners, Owner
+        WHERE RestaurantOwners.restaurant = :id
+        AND RestaurantOwners.owner = Owner.id');
+
+        // bind, execute and fetch
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+
+      function getRestaurantWithReviews($restaurantId){
+    	global $db;
+
+		$stmt = $db->prepare(
+			'SELECT name, description, address, AVG(Review.score) AS restScore
+			FROM Restaurant, Review
+			WHERE Restaurant.id = :restaurantId
+			AND Review.restaurant = Restaurant.id
+			GROUP BY name
+			ORDER BY restScore DESC LIMIT 10');
+		  // bind, execute and fetch
+		  $stmt->bindParam(':restaurantId', $restaurantId);
+		  $stmt->execute();
+
+		  return $stmt->fetch();    	
+    }
+
     function registerRestaurant($name, $description, $location, $priceRange) {
         global $db;
 
         include_once(dirname(__FILE__) . '/../utilities/utils.php');
 
         $id = getNextId($db);
-        $price_id = getPriceRangeId($priceRange);
         $stmt = $db->prepare('INSERT INTO Restaurant (id, name, description, address, priceRange) VALUES (?,?,?,?,?)');
-        $stmt->execute(array($id, $name, $description, $location, $price_id));
+        $stmt->execute(array($id, $name, $description, $location, $priceRange));
 
         return $id;
      }
@@ -102,5 +187,82 @@
          
          $stmt = $db->prepare('INSERT INTO RestaurantOwners (restaurant, owner) VALUES (?,?)');
          $stmt->execute(array($rest_id,$user_id));
+     }
+
+    function deleteRestaurantOwner($rest_id, $user_id){
+          global $db;
+
+          $stmt = $db->prepare('DELETE FROM RestaurantOwners
+          WHERE restaurant=:rest_id
+          AND owner=:user_id');
+
+          $stmt->bindParam(':rest_id', $rest_id);
+          $stmt->bindParam(':user_id', $user_id);
+          $stmt->execute();
+                
+    }
+
+     function deleteRestaurant($rest_id){
+          global $db;
+
+          $stmt = $db->prepare('DELETE FROM Restaurant
+          WHERE id=:id');
+
+          $stmt->bindParam(':id', $rest_id);
+          $stmt->execute();
+
+          $stmt = getOwnersRestaurant($rest_id);
+
+          while ($row = $stmt->fetch()) {  
+			deleteRestaurantOwner($rest_id, $row['id']);
+        }
+     }
+
+     function updateNameRestaurant($id, $name) {
+    	global $db;
+
+    	$stmt = $db->prepare('UPDATE Restaurant
+    	SET name=:name
+    	WHERE id=:id');
+
+		$stmt->bindParam(':name', $name);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+     }
+
+     function updateDescription($id, $description) {
+    	global $db;
+
+    	$stmt = $db->prepare('UPDATE Restaurant
+    	SET description=:description
+    	WHERE id=:id');
+
+		$stmt->bindParam(':description', $description);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+     }
+
+     function updateLocation($id, $location){
+    	global $db;
+
+    	$stmt = $db->prepare('UPDATE Restaurant
+    	SET address=:location
+    	WHERE id=:id');
+
+		$stmt->bindParam(':location', $location);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+     }
+
+     function updatePrice($id, $price) {
+    	global $db;
+
+    	$stmt = $db->prepare('UPDATE Restaurant
+    	SET priceRange=:priceRange
+    	WHERE id=:id');
+
+		$stmt->bindParam(':priceRange', $price);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();         
      }
 ?>

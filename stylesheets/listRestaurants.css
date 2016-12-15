@@ -1,0 +1,11 @@
+#restaurants li{
+  list-style: none;
+  margin: 0px;
+  text-align: left;
+}
+
+#restaurants li:before {
+    content: "⇨";
+    padding-right: 10px;
+    color: #7e472d;
+}

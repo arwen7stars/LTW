@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="stylesheets/global-style.css">
     <link rel="stylesheet" href="stylesheets/header.css">
     <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/listRestaurants.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 	</head>
 
@@ -17,29 +19,20 @@
     /* TODO porque raio e que nao posso retirar connection e deixar ficar session start? */
     session_start();
     include_once(dirname(__FILE__) . "/database/connection.php");
+    include_once(dirname(__FILE__) . "/database/restaurants_database.php");
     include_once(dirname(__FILE__) . "/includes/header.php");
   ?>
 
-  <br>
-  <div class="restaurant_info">
-    <img src="./resources/image.jpg" alt="bird" width="200" height="128">
-
-    <ul>
-    <li><a href="/">Name</a></li>
-    <li>Location</li>
-    <li>Score</li>
-    </ul>
-
+  <center><h2>All Restaurants</h2></center>
+  <div id="restaurants">
+  <ul>
+    <?php
+    $stmt = getAllRestaurants();
+while ($row = $stmt->fetch()) { ?>
+<li><a href="restaurantProfile.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a></li>
+<?php } ?>
   </div>
-  <div class="recent_reviews">
-    <h3>
-      Recent Reviews
-    </h3>
-
-    <ul>
-      <li>Get them from db</li>
-    </ul>
-  </div>
+  </ul>
 
   <?php
     include_once(dirname(__FILE__) . "/includes/footer.php");
