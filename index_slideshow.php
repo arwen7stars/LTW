@@ -34,11 +34,11 @@
       </div>
 
       <div class="prev">
-        <a>&#10096;</a>
+      	&#10096;
       </div>
 
       <div class="next">
-        <a>&#10097;</a>
+        &#10097;
       </div>
 
 

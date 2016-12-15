@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/index.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
-  <script type="text/javascript" src="utilities/imageSlideShow.js" defer></script>
+  <script type="text/javascript" src="scripts/imageSlideShow.js" defer></script>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <script src="includes/jquery-3.1.1.min.js"></script>
 
@@ -19,7 +19,7 @@
 
 <?php
   session_start();
-  
+
   include_once(dirname(__FILE__) . "/database/connection.php");
   include_once(dirname(__FILE__) . "/database/restaurants_database.php");
   include_once(dirname(__FILE__) . "/includes/header.php");

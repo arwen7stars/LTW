@@ -6,8 +6,12 @@
   <title>EAT&AVAIL</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="stylesheets/global-style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="stylesheets/header.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
+  <link rel="stylesheet" href="stylesheets/search.css">
+  <script type="text/javascript" src="scripts/search.js" defer></script>
+  <script src="includes/jquery-3.1.1.min.js"></script>
 </head>
 
 <body>
@@ -19,32 +23,96 @@
   // get search
   $search = $_GET['search'];
 
-  // create regexp
-  $pattern =
-
   // get restaurant info
-  $stmt = $db->prepare(
+  $restaurants = $db->prepare(
     'SELECT name, id
-    FROM Restaurant');
+    FROM Restaurant
+    ORDER BY name ASC');
 
   // bind, execute and fetch
-  $stmt->execute();
+  $restaurants->execute();
+
+  // get user info
+  $users = $db->prepare(
+    'SELECT name, id
+    FROM User
+    ORDER BY name ASC');
+
+  // bind, execute and fetch
+  $users->execute();
 
   ?>
+<section class="main-body">
 
-  <h1>Restaurants found!</h1>
+    <section class="search-results">
 
-  <?php
-  while ($row = $stmt->fetch()) {
-    $matched = preg_match('/.*' . $search . '.*/i', $row['name'], $matches);
-    if ($matched) {
-      ?>
+      <div class="restaurant-results">
 
-      <a href="#"><?= $row['id'] ?> <?= $row['name'] ?></a>
+        <h1>Restaurants</h1>
+        <ul>
+          <?php
+          while ($row = $restaurants->fetch()) {
+            $matched = preg_match('/.*' . $search . '.*/i', $row['name'], $matches);
+            if ($matched) {
+              ?>
+              <li>
+                  <a href="restaurantProfile.php?id=<?= $row['id']?>"><?= $row['name'] ?></a>
+              </li>
+            <?php
+            }
+          } ?>
+        </ul>
 
-    <?php
-    }
-  } ?>
+      </div>
+
+      <div class="user-results">
+
+        <h1>Users</h1>
+        <ul>
+          <?php
+          while ($row = $users->fetch()) {
+            $matched = preg_match('/.*' . $search . '.*/i', $row['name'], $matches);
+            if ($matched) {
+              ?>
+              <li>
+                  <a href="profile.php?id=<?= $row['id']?>"><?= $row['name'] ?></a>
+              </li>
+            <?php
+            }
+          } ?>
+        </ul>
+
+      </div>
+
+    </section>
+
+      <div class="restaurant-display">
+        <div class="restaurant-name">
+
+        </div>
+        <div class="restaurant-score">
+
+        </div>
+        <div class="restaurant-desc">
+
+        </div>
+        <div class="restaurant-loc">
+
+        </div>
+      </div>
+
+      <div class="user-display">
+        <div class="user-name">
+          NOME123
+        </div>
+        <div class="user-pic">
+          PICTURE HERE
+        </div>
+      </div>
+
+</section>
+
+
 
 
 

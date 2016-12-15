@@ -1,0 +1,23 @@
+.main-body {
+  position: relative;
+  border: solid 2px pink;
+}
+
+.search-results {
+  border: solid 2px black;
+  display: inline-block;
+}
+
+.restaurant-display {
+  border: solid 2px red;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.user-display {
+  border: solid 2px green;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
