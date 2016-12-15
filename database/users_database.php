@@ -42,7 +42,7 @@
 
   function is_registered($username) { //retorna true se esta registado
       global $db;
-      $findUsername = $db->prepare('SELECT * FROM User WHERE (name = ?)');
+      $findUsername = $db->prepare('SELECT * FROM Login WHERE (username = ?)');
       $findUsername->execute(array($_POST['username']));
       $foundUsername = $findUsername->fetchAll();
       if(empty($foundUsername)){

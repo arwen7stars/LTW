@@ -28,3 +28,9 @@
     padding: 0.9rem 0rem;
     font-size: 1rem;
 }
+
+#login_error{
+    width:40%;
+    margin: 1.5rem auto;
+    color:red;
+}
