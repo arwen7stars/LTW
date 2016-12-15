@@ -150,7 +150,23 @@
         $stmt->execute();
 
         return $stmt;
+    }
 
+    function isUserOwner($user_id, $rest_id) {
+        global $db;    	
+
+    	$stmt = $db->prepare(
+        'SELECT *
+        FROM RestaurantOwners
+        WHERE RestaurantOwners.restaurant = :rest_id
+        AND RestaurantOwners.owner = :user_id');
+
+        // bind, execute and fetch
+        $stmt->bindParam(':rest_id', $rest_id);
+        $stmt->bindParam(':user_id', $user_id);        
+        $stmt->execute();
+
+        return $stmt->fetch() !== false;
     }
 
       function getRestaurantWithReviews($restaurantId){

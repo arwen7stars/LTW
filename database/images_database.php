@@ -21,6 +21,26 @@
 	return $id;
  }
 
+ function addImageUser($user_id, $url, $description){
+	global $db;
+
+	include_once(dirname(__FILE__) . '/../utilities/utils.php');
+	
+	$id = getNextId($db);
+	$stmt = $db->prepare('INSERT INTO Image (id, url, description) VALUES (?,?,?)');
+	$stmt->execute(array($id, $url, $description));
+
+    $stmt = $db->prepare('UPDATE User
+	SET image=:img_id
+	WHERE id=:id');
+
+	$stmt->bindParam(':img_id', $id);
+	$stmt->bindParam(':id', $user_id);
+	$stmt->execute();
+
+	return $id; 	
+ }
+
    function updateImage($id, $url, $description) {
 	global $db;
 

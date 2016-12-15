@@ -102,6 +102,19 @@ while ($row = $stmt->fetch()){
   ?>
 <li><a href="profile.php?id=<?=$row['id']?>"><?=$user_info['name']?></a></li>
 <?php } ?>
+
+<?php
+
+if(isset($_SESSION['username'])){
+$user_id = getLoginID($_SESSION['username']);
+
+if(isOwner($user_id) && !isUserOwner($user_id, $restaurantId)){?>
+  <form action="database/action_add_to_owners.php?id=<?=$restaurantId?>" method="post">
+        <p><input type="submit" value="Add to restaurants!" class="button2"></p>
+</form>
+<?php } ?>
+
+
 </div>
 
 <div class="recentReview-wrap">
@@ -134,8 +147,6 @@ while ($row = $stmt->fetch()) { ?>
 <div class="writeReview-wrap">
 
 <?php
-if(isset($_SESSION['username'])){
-$user_id = getLoginID($_SESSION['username']);
 if(isReviewer($user_id)){?>
 
 <p><h2>Write a review</h2></p>

@@ -53,17 +53,24 @@
 	updateUserBirthday($id, $_POST['birth_date']);
 
 	if (!empty($_FILES['image']['name'])){
-	$name_file = $_FILES['image']['name'];
-	$destination = '../resources/' . $name_file;
-	$tmp_file = $_FILES['image']['tmp_name'];
+		$name_file = $_FILES['image']['name'];
+		$destination = '../resources/' . $name_file;
+		$tmp_file = $_FILES['image']['tmp_name'];
 
-	move_uploaded_file($tmp_file, $destination);
+		move_uploaded_file($tmp_file, $destination);
 
-	$username = $_SESSION['username'];
-	$description = "Profile Picture of $username";
+		$username = $_SESSION['username'];
+		$description = "Profile Picture of $username";
 
-	$path = 'resources/' . $name_file;
-	updateImage($user_info['image'], $path, $description);
+		$path = 'resources/' . $name_file;
+
+		$image = $user_info['image'];	
+
+		if(is_null($image)){
+			addImageUser($user_info['id'], $path, $description);
+		} else{
+			updateImage($user_info['image'], $path, $description);
+		}
 
 	}
     
