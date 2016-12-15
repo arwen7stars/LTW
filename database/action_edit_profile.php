@@ -27,18 +27,30 @@
     } else{
     	deleteReviewerStatus($id);
     }
-	if ($_POST["password"] == $_POST["password_repeat"]) {
-		updatePassword($id, $_POST["password"]);
+
+    $password_hash1 = hash('sha256', $_POST["password"]);
+    $password_hash2 = hash('sha256', $_POST["password_repeat"]);
+
+    if(!empty($_POST["password"]) && (!empty($_POST["password_repeat"]))){
+		if ($password_hash1 == $password_hash2) {
+			updatePassword($id, $password_hash1);
+		}
+		else {
+		   // TODO INFORM USER THAT PASSWORDS DON'T MATCH
+		}
+    }
+
+    if(!empty($_POST['name'])){
+		updateName($id, $_POST['name']);
 	}
-	else {
-	   // TODO INFORM USER THAT PASSWORDS DON'T MATCH
-	}
+
 	if(!empty($_POST['username'])){
 		if(is_registered($_POST['username'])){
 			// TODO INFORM USER THAT THE GIVEN USERNAME IS ALREADY IN USE
+		} else{
+			updateUsername($id, $_POST['username']);
+			$_SESSION['username'] = $_POST['username'];
 		}
-		updateUsername($id, $_POST['username']);
-		$_SESSION['username'] = $_POST['username'];
 	}
 
 	if( $_POST['location'] != -1 ){
@@ -47,18 +59,11 @@
 
 	$user_info = getUserInfo($id);
 
-	strtotime($user_info['dateJoined']);
-	strtotime($_POST['birth_date']);
+	updateUserBirthday($id, $_POST['birth_date']);
 
-	if(strtotime($user_info['dateJoined']) < strtotime($_POST['birth_date'])){
-			// TODO INFORM USER THAT THE BIRTH DATE CANNOT BE AFTER JOIN DATE		
-	} else updateUserBirthday($id, $_POST['birth_date']);
-
-	if (!empty($_FILES['logo']['name'])){
-
+	if (!empty($_FILES['image']['name'])){
 	$name_file = $_FILES['image']['name'];
-	$destination = '/../resources/' . $name_file;
-	echo $destination;
+	$destination = '../resources/' . $name_file;
 	$tmp_file = $_FILES['image']['tmp_name'];
 
 	move_uploaded_file($tmp_file, $destination);
@@ -66,7 +71,12 @@
 	$username = $_SESSION['username'];
 	$description = "Profile Picture of $username";
 
-	updateImage($user_info['image'], $destination, $description);
+	$path = 'resources/' . $name_file;
+	updateImage($user_info['image'], $path, $description);
 
 	}
+    
+    $referer = '../profile.php';
+
+    header('Location: ' . $referer);
 ?>

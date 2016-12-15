@@ -23,24 +23,34 @@ include_once(dirname(__FILE__) . '/database/restaurants_database.php');
 include_once(dirname(__FILE__) . '/database/reviews_database.php');
 include_once(dirname(__FILE__) . "/includes/header.php");
 
-$user_id = getLoginID($_SESSION['username']);
-$stmt = getReviewsUser($user_id);
+$rest_id = $_GET['id'];
+
+$rest_info = getRestaurant($rest_id);
+
+$stmt = $db->prepare(
+'SELECT *
+FROM Review WHERE
+restaurant=:id
+ORDER BY id DESC');
+
+$stmt->bindParam(':id', $rest_id);
+$stmt->execute();
 
 ?>
 <div id="my_reviews">
-<h2>My Reviews</h2>
+<h2><?=$rest_info['name']?> Reviews</h2>
 <?php
 
-while ($row = $stmt->fetch()) { 
-$rest_info = getRestaurant($row['restaurant']);
+while ($row = $stmt->fetch()) {
+    $user_info = getUserInfo($row['reviewer']);
 ?>
 <div class="review">
 <ul>
 <h3><?= $row['title'] ?>: <?= $row['tldr'] ?>
  (<?= $row['score'] ?>/10)</h3>
 <p><?= $row['body'] ?></p>
-<p>Written for 
-<a href="restaurantProfile.php?id=<?=$rest_info['id']?>"><?= $rest_info['name'] ?></a>
+<p>Written by 
+<a href="profile.php?id=<?=$user_info['id']?>"><?= $user_info['name'] ?></a>
 </p>
  </ul>
 </div>

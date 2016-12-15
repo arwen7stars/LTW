@@ -1,0 +1,30 @@
+#my_restaurants .manage_restaurants {
+    margin: 20px;
+    padding: 1rem;
+    box-shadow: 0 0 10px black;
+    border-color: #7E472D;
+    border-style: solid;
+    border-width: 1px;
+    margin-right: 10%;
+    margin-left:10%;
+}
+
+#my_restaurants h2{
+  text-align: center;
+}
+
+#my_restaurants .button2:hover{
+  color: #fff;
+}
+
+#my_restaurants ul {
+    list-style: none;
+    padding: 0;
+    margin: 0rem 0rem 2rem;
+}
+
+#my_restaurants li:before {
+    content: "⇨";
+    padding-right: 10px;
+    color: #7e472d;
+}

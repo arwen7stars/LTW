@@ -7,9 +7,11 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="stylesheets/global-style.css">
   <link rel="stylesheet" href="stylesheets/header.css">
-  <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
   <link rel="stylesheet" href="stylesheets/footer.css">
+  <link rel="stylesheet" href="stylesheets/restaurantProfile.css">
   <script type="text/javascript" src="utilities/imageSlideShow.js" defer></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
 </head>
 
 
@@ -19,105 +21,107 @@
   session_start();
   include_once(dirname(__FILE__) . "/database/connection.php");
   include_once(dirname(__FILE__) . "/includes/header.php");
-  ?>
+  include_once(dirname(__FILE__) . "/database/reviews_database.php");
+  include_once(dirname(__FILE__) . "/database/restaurants_database.php");
+  include_once(dirname(__FILE__) . "/database/users_database.php");
+?>
 
 
   <!-- RESTAURANT INFO -->
-  <?php
+<?php  
+// get restaurant id
+$restaurantId = $_GET['id'];
 
-  // get restaurant id
-  $restaurantId = $_GET['id'];
+// will only get restaurant info
+$restaurantInfo = getRestaurant($restaurantId);
+?>
+<div id="restaurantProfile">
 
-  // get restaurant info
-  $stmt = $db->prepare(
-    'SELECT name, description, address, type AS priceRange, AVG(Review.score) AS restScore
-    FROM Restaurant, Review, PriceRange
-    WHERE Restaurant.id = :restaurantId
-    AND Review.restaurant = Restaurant.id
-    AND Restaurant.priceRange = PriceRange.id
-    GROUP BY name
-    ORDER BY restScore DESC LIMIT 10');
+<h1><?= $restaurantInfo['name'] ?></h1>
 
-  // bind, execute and fetch
-  $stmt->bindParam(':restaurantId', $restaurantId);
-  $stmt->execute();
-  $restaurantInfo = $stmt->fetch();
+<div class="imgGallery-wrap">
+<h2>Image Gallery</h2>
 
+<?php
+$stmt = getImagesRestaurant($restaurantId);
+while ($img = $stmt->fetch()) { 
+?>
+<img class="slideShow" src="<?= $img['url'] ?>" alt="<?= $img['description'] ?>">
+
+<?php } ?>
+
+</div>
+
+<div class="restInfo-wrap">
+
+<h3>Description: </h3>
+<p><?= $restaurantInfo['description'] ?></p>
+
+<h3>Location: </h3>
+<p><?= $restaurantInfo['address'] ?></p>
+
+<h3>Owners: </h3>
+
+<?php
+$stmt = getOwnersRestaurant($restaurantId);
+while ($row = $stmt->fetch()){
+  $user_info = getUserInfo($row['id']);
   ?>
-  <!-- !RESTAURANT INFO -->
+<li><a href="profile.php?id=<?=$row['id']?>"><?=$user_info['name']?></a></li>
+<?php } ?>
+</div>
 
-  <section class="restaurantProfile">
+<div class="recentReview-wrap">
 
-    <header class="header-wrap">
-      <h1 class="name"><?= $restaurantInfo['name'] ?></h1>
-    </header>
+<h2>Recent Reviews</h2>
 
-    <div class="imgGallery-wrap">
-      <h2>Image Gallery</h2>
+<?php 
 
-      <?php
+// prepare query
+$stmt = $db->prepare(
+'SELECT User.id, title, score, tldr, body, name
+FROM Review, Reviewer, User
+WHERE Review.restaurant = :restaurantId
+AND Review.reviewer = Reviewer.id
+AND Reviewer.id = User.id
+ORDER BY Review.id DESC LIMIT 3');
+// bind and execute
+$stmt->bindParam(':restaurantId', $restaurantId);
+$stmt->execute();
+while ($row = $stmt->fetch()) { ?>
 
-      // get restaurant images
-      $stmt = $db->prepare(
-        'SELECT url, description
-        FROM Image
-        WHERE Image.restaurant = :restaurantId');
+<h3><?= $row['title']?></h3>
+<p><?= $row['tldr']?> (<?= $row['score']?>/10)</p>
+<p>Written by 
+<a href="profile.php?id=<?=$row['id']?>"><?= $row['name'] ?></p></a>
+<hr>
+<?php } ?>
+<a href="reviewsRestaurant.php?id=<?=$restaurantId?>">Read more...</a>
+</div>
 
-      // bind, execute and fetch
-      $stmt->bindParam(':restaurantId', $restaurantId);
-      $stmt->execute();
+<div class="writeReview-wrap">
 
-      while ($img = $stmt->fetch()) { 
-      ?>
+<?php
 
+if(isset($_SESSION['username'])){
+$user_id = getLoginID($_SESSION['username']);
 
-        <img class="slideShow" src="<?= $url ?>" alt="<?= $img['description'] ?>">
+if(isReviewer($user_id)){?>
 
-      <?php } ?>
+<p><h2>Write a review</h2></p>
+<form action="database/action_write_review.php" method="post">
+        <input type="hidden" name="id" value="<?=$restaurantId?>">
+        <p><label class="labelClass">Title:</label><input type="text" name="title"></p>
+        <p><label class="labelClass">Summary:</label><br><textarea name="tldr" rows="2" cols="60"></textarea></p>
+        <p><label class="labelClass">Body:</label><br><textarea name="body" rows="6" cols="60"></textarea></p>
+        <p><label class="labelClass">Score:</label><input type="number" name="score" min="0" max="10" required="required"></p>
+        <p><input type="submit" value="Send" class="button2"></p>
+</form>
+<?php } } ?>
+</div>
+</div>
 
-    </div>
-
-    <div class="description-wrap">
-      <h2>Description</h2>
-      <p><?= $restaurantInfo['description'] ?></p>
-    </div>
-
-    <aside class="recentReview-wrap">
-
-      <h1>Recent Reviews</h1>
-
-      <?php
-
-      // prepare query
-      $stmt = $db->prepare(
-        'SELECT score, tldr, body, name
-        FROM Review, Reviewer, User
-        WHERE Review.restaurant = :restaurantId
-        AND Review.reviewer = Reviewer.id
-        AND Reviewer.id = User.id
-        ORDER BY Review.id DESC LIMIT 3');
-
-      // bind and execute
-      $stmt->bindParam(':restaurantId', $restaurantId);
-      $stmt->execute();
-
-      while ($row = $stmt->fetch()) { ?>
-
-        <section>
-          <h2 class="tldr"><?= $row['tldr']?> <?= $row['score']?>/10</h2>
-          <!-- TODO fazer display dos \n correctamente -->
-          <p class="body"><?= $row['body']?></p>
-          <!-- TODO link name of user to his profile page -->
-          <p class="reviewer">Written by <?= $row['name'] ?></p>
-        </section>
-
-      <?php } ?>
-
-    </aside>
-
-  </section>
-
-  <?php include_once(dirname(__FILE__) . "/includes/footer.php"); ?>
+<?php include_once(dirname(__FILE__) . "/includes/footer.php"); ?>
 
 </body>
 
