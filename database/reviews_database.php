@@ -52,19 +52,17 @@
     return $stmt;
     }
 
-    function getRepliesReview($review_id, $user_id) {
+    function getRepliesReview($review_id) {
     global $db;
 
     // prepare query
     $stmt = $db->prepare(
     'SELECT *
     FROM ReplyReviews
-    WHERE ReplyReviews.review = :id
-    AND ReplyReviews.commenter = :user_id');
+    WHERE ReplyReviews.review = :id');
 
     // bind and execute
-    $stmt->bindParam(':id', $review_id);
-    $stmt->bindParam(':user_id', $user_id);    
+    $stmt->bindParam(':id', $review_id);  
     $stmt->execute();
 
     return $stmt;

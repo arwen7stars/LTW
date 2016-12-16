@@ -6,9 +6,9 @@ function save_user(){
     $id = getNextId($db);
 
     //guardar em users
-    $stmt = $db->prepare('INSERT INTO User (id, name, dataOfBirth, dateJoined) VALUES (?,?,?,?)');
+    $stmt = $db->prepare('INSERT INTO User (id, name, dataOfBirth, dateJoined, residenceArea) VALUES (?,?,?,?,?)');
     try{
-        $stmt->execute(array($id, $_POST['real_name'], $_POST['birthday'], date('Y-m-d')));
+        $stmt->execute(array($id, $_POST['real_name'], $_POST['birthday'], date('Y-m-d'), $_POST['location']));
     } catch(PDOException $e) {
         die($e->getMessage());
     }

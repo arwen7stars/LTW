@@ -65,9 +65,6 @@
 
         <?php
 
-    } else {
-        $referer = '../index.php';
-        header('Location: ' . $referer);
     }
 
     ?>

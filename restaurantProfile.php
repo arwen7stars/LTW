@@ -104,6 +104,26 @@ while ($row = $stmt->fetch()){
 <li><a href="profile.php?id=<?=$row['id']?>"><?=$user_info['name']?></a></li>
 <?php } ?>
 
+
+<h2>Score: </h2>
+<b><?php
+
+      // prepare query TODO make limit come from url and get it with post, for top 10, 100 etc
+      $stmt = $db->prepare('SELECT AVG(Review.score) AS restScore
+      FROM Restaurant, Review
+      WHERE Review.restaurant = :id');
+
+      // fetch reviews
+      $stmt->bindParam(':id', $restaurantId);
+      $stmt->execute();
+
+      $row = $stmt->fetch();
+      $score = number_format(round($row['restScore'],2),2);
+      $row['restScore'] . '/10';
+?>
+<?=$score?>/10
+</b>
+
 <?php
 if(isset($_SESSION['username'])){
 $user_id = getLoginID($_SESSION['username']);
@@ -114,7 +134,6 @@ if(isOwner($user_id) && !isUserOwner($user_id, $restaurantId)){?>
 <?php }
 } ?>
 
-
 </div>
 
 
@@ -122,8 +141,8 @@ if(isOwner($user_id) && !isUserOwner($user_id, $restaurantId)){?>
 <div class="recentReview-wrap">
 
 <h2>Recent Reviews</h2>
-
 <?php 
+if(getRestaurantWithReviews($restaurantId) !== false){
 
 // prepare query
 $stmt = $db->prepare(
@@ -139,23 +158,24 @@ $stmt->execute();
 while ($row = $stmt->fetch()) { ?>
 
 <h3><?= $row['title']?></h3>
-<p><?= $row['tldr']?> (<?= $row['score']?>/10)</p>
+<p><?= $row['tldr'] ?> (<?= $row['score']?>/10)</p>
 <p>Written by 
 <a href="profile.php?id=<?=$row['user_id']?>"><?= $row['name'] ?></p></a>
-<br>
 
 <?php if(isset($_SESSION['username'])){
 $user_id = getLoginID($_SESSION['username']);
 if(isOwner($user_id) && isUserOwner($user_id, $restaurantId)){?>
 
+<a href="replyReview.php?review_id=<?=$row['review_id']?>"><b>Reply</b></a><br>
 
-<a href="replyReview.php?review_id=<?=$row['review_id']?>"><b>Reply</b></a>
-
-
-<?php }}?>
+<?php }} ?>
+<a href="replyReview.php?review_id=<?=$row['review_id']?>"><b>View Replies</b></a>
 <hr>
 <?php } ?>
 <a href="reviewsRestaurant.php?id=<?=$restaurantId?>">Read more...</a>
+
+<?php } else echo 'No reviews written for this restaurant yet.';?>
+
 </div>
 
 <div class="writeReview-wrap">

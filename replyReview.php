@@ -25,7 +25,9 @@ include_once(dirname(__FILE__) . '/database/reviews_database.php');
 include_once(dirname(__FILE__) . "/includes/header.php");
 
 $review_id = $_GET['review_id'];
-$user_id = getLoginID($_SESSION['username']);
+
+if(isset($_SESSION['username']))
+  $user_id = getLoginID($_SESSION['username']);
 
 $review = getReview($review_id);
 
@@ -43,6 +45,7 @@ $stmt->execute();
 $row = $stmt->fetch();
 
 $user_info = getUserInfo($row['reviewer']);
+$restaurantId = $row['restaurant'];
 
 ?>
 
@@ -61,20 +64,21 @@ $user_info = getUserInfo($row['reviewer']);
 </div>
 
 <?php
-$stmt = getRepliesReview($review_id, $user_id);
+$stmt = getRepliesReview($review_id);
 
 while ($row = $stmt->fetch()) {
+  $user = getUserInfo($row['commenter']);
 ?>
 <div class="reply">
 <ul>
-<h3><?= $user_info['name'] ?></h3>
+<h3><?= $user['name'] ?></h3>
 <p><?= $row['comment'] ?></p>
  </ul>
 </div>
 <?php } ?>
 
 
-
+<?php if(isset($_SESSION['username']) && isOwner($user_id) &&  isUserOwner($user_id, $restaurantId)){ ?>
 <div id="replyIntro">
 <p><h3>Write a comment</h3></p>
 <form action="database/action_write_reply.php" method="post">
@@ -84,6 +88,7 @@ while ($row = $stmt->fetch()) {
         <p><input type="submit" value="Send" class="button2"></p>
 </form>
 </div>
+<?php } ?>
 
 
 <?php include_once(dirname(__FILE__) . "/includes/footer.php"); ?>

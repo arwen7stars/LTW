@@ -20,7 +20,7 @@
   ?>
 
     <div class="review">
-      <h4><?= $row['title']?>: <?= $row['tldr']?>(<?= $row['score']?>/10)</h3>
+      <h4><?= $row['title']?>: <?= $row['tldr']?> (<?= $row['score']?>/10)</h3>
       <!-- TODO fazer display dos \n correctamente -->
       <p class="body"><?= $row['body']?></p>
       <p>Written by <a href="profile.php?id=<?=$row['id']?>"><?= $row['name'] ?></a>
