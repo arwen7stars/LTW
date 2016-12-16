@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="stylesheets/footer.css">
     <link rel="stylesheet" href="stylesheets/profile.css">
     <link rel="stylesheet" href="stylesheets/img-gallery.css">
-    <script type="text/javascript" src="utilities/imageSlideShow.js" defer></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="includes/jquery-3.1.1.min.js"></script>
 	</head>

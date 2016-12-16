@@ -44,13 +44,15 @@ $stmt->execute();
 
 while ($row = $stmt->fetch()) {
     $user_info = getUserInfo($row['reviewer']);
+		$tldr_clean = str_replace('\n', '<br />', $row['tldr']);
+		$body_clean = str_replace('\n', '<br />', $row['body']);
 ?>
 <div class="review">
 <ul>
 <h3><?= $row['title'] ?>: <?= $row['tldr'] ?>
  (<?= $row['score'] ?>/10)</h3>
-<p><?= $row['body'] ?></p>
-<p>Written by 
+<p><?= $body_clean ?></p>
+<p>Written by
 <a href="profile.php?id=<?=$user_info['id']?>"><?= $user_info['name'] ?></a>
 </p>
  </ul>
@@ -62,4 +64,3 @@ while ($row = $stmt->fetch()) {
 
 </body>
 </html>
-
