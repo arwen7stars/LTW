@@ -30,7 +30,7 @@
 
 
   <!-- RESTAURANT INFO -->
-<?php  
+<?php
 // get restaurant id
 $restaurantId = $_GET['id'];
 
@@ -141,7 +141,7 @@ if(isOwner($user_id) && !isUserOwner($user_id, $restaurantId)){?>
 <div class="recentReview-wrap">
 
 <h2>Recent Reviews</h2>
-<?php 
+<?php
 if(getRestaurantWithReviews($restaurantId) !== false){
 
 // prepare query
@@ -159,7 +159,7 @@ while ($row = $stmt->fetch()) { ?>
 
 <h3><?= $row['title']?></h3>
 <p><?= $row['tldr'] ?> (<?= $row['score']?>/10)</p>
-<p>Written by 
+<p>Written by
 <a href="profile.php?id=<?=$row['user_id']?>"><?= $row['name'] ?></p></a>
 
 <?php if(isset($_SESSION['username'])){
